@@ -1,0 +1,712 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		866BE82B1EBB1B5A0020A9D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE82A1EBB1B5A0020A9D0 /* main.m */; };
+		866BE82E1EBB1B5A0020A9D0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE82D1EBB1B5A0020A9D0 /* AppDelegate.m */; };
+		866BE8311EBB1B5A0020A9D0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8301EBB1B5A0020A9D0 /* ViewController.m */; };
+		866BE8341EBB1B5A0020A9D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866BE8321EBB1B5A0020A9D0 /* Main.storyboard */; };
+		866BE8361EBB1B5A0020A9D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866BE8351EBB1B5A0020A9D0 /* Assets.xcassets */; };
+		866BE8391EBB1B5A0020A9D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866BE8371EBB1B5A0020A9D0 /* LaunchScreen.storyboard */; };
+		866BE8441EBB1B5A0020A9D0 /* DBNetworkingDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8431EBB1B5A0020A9D0 /* DBNetworkingDemoTests.m */; };
+		866BE84F1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE84E1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.m */; };
+		866BE8711EBB1B9F0020A9D0 /* DBNetWorkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8601EBB1B9F0020A9D0 /* DBNetWorkingManager.m */; };
+		866BE8721EBB1B9F0020A9D0 /* DBNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8631EBB1B9F0020A9D0 /* DBNetworkReachabilityManager.m */; };
+		866BE8731EBB1B9F0020A9D0 /* DBSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8661EBB1B9F0020A9D0 /* DBSecurityPolicy.m */; };
+		866BE8741EBB1B9F0020A9D0 /* DBURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8691EBB1B9F0020A9D0 /* DBURLRequestSerialization.m */; };
+		866BE8751EBB1B9F0020A9D0 /* DBURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE86B1EBB1B9F0020A9D0 /* DBURLResponseSerialization.m */; };
+		866BE8761EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE86E1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m */; };
+		866BE8771EBB1B9F0020A9D0 /* DBURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8701EBB1B9F0020A9D0 /* DBURLSessionManager.m */; };
+		B943FE24814B3CD0391C6DA2 /* libPods-DBNetworkingDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51EB01B581D0B5AAB86988 /* libPods-DBNetworkingDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		866BE8401EBB1B5A0020A9D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 866BE81E1EBB1B5A0020A9D0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 866BE8251EBB1B5A0020A9D0;
+			remoteInfo = DBNetworkingDemo;
+		};
+		866BE84B1EBB1B5A0020A9D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 866BE81E1EBB1B5A0020A9D0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 866BE8251EBB1B5A0020A9D0;
+			remoteInfo = DBNetworkingDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		26F6173BCEB0062E5FAE5DB2 /* Pods-DBNetworkingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBNetworkingDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DBNetworkingDemo/Pods-DBNetworkingDemo.release.xcconfig"; sourceTree = "<group>"; };
+		866BE8261EBB1B5A0020A9D0 /* DBNetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DBNetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		866BE82A1EBB1B5A0020A9D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		866BE82C1EBB1B5A0020A9D0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		866BE82D1EBB1B5A0020A9D0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		866BE82F1EBB1B5A0020A9D0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		866BE8301EBB1B5A0020A9D0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		866BE8331EBB1B5A0020A9D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		866BE8351EBB1B5A0020A9D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		866BE8381EBB1B5A0020A9D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		866BE83A1EBB1B5A0020A9D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		866BE83F1EBB1B5A0020A9D0 /* DBNetworkingDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DBNetworkingDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		866BE8431EBB1B5A0020A9D0 /* DBNetworkingDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBNetworkingDemoTests.m; sourceTree = "<group>"; };
+		866BE8451EBB1B5A0020A9D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		866BE84A1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DBNetworkingDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		866BE84E1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBNetworkingDemoUITests.m; sourceTree = "<group>"; };
+		866BE8501EBB1B5A0020A9D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		866BE85D1EBB1B9F0020A9D0 /* DBNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBNetworking.h; sourceTree = "<group>"; };
+		866BE85F1EBB1B9F0020A9D0 /* DBNetWorkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBNetWorkingManager.h; sourceTree = "<group>"; };
+		866BE8601EBB1B9F0020A9D0 /* DBNetWorkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNetWorkingManager.m; sourceTree = "<group>"; };
+		866BE8621EBB1B9F0020A9D0 /* DBNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		866BE8631EBB1B9F0020A9D0 /* DBNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		866BE8651EBB1B9F0020A9D0 /* DBSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBSecurityPolicy.h; sourceTree = "<group>"; };
+		866BE8661EBB1B9F0020A9D0 /* DBSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBSecurityPolicy.m; sourceTree = "<group>"; };
+		866BE8681EBB1B9F0020A9D0 /* DBURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBURLRequestSerialization.h; sourceTree = "<group>"; };
+		866BE8691EBB1B9F0020A9D0 /* DBURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBURLRequestSerialization.m; sourceTree = "<group>"; };
+		866BE86A1EBB1B9F0020A9D0 /* DBURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBURLResponseSerialization.h; sourceTree = "<group>"; };
+		866BE86B1EBB1B9F0020A9D0 /* DBURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBURLResponseSerialization.m; sourceTree = "<group>"; };
+		866BE86D1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHTTPSSessionManager.h; sourceTree = "<group>"; };
+		866BE86E1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHTTPSSessionManager.m; sourceTree = "<group>"; };
+		866BE86F1EBB1B9F0020A9D0 /* DBURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBURLSessionManager.h; sourceTree = "<group>"; };
+		866BE8701EBB1B9F0020A9D0 /* DBURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBURLSessionManager.m; sourceTree = "<group>"; };
+		8865DE67C61BBFCA3C032932 /* Pods-DBNetworkingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBNetworkingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DBNetworkingDemo/Pods-DBNetworkingDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		CE51EB01B581D0B5AAB86988 /* libPods-DBNetworkingDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DBNetworkingDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		866BE8231EBB1B5A0020A9D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B943FE24814B3CD0391C6DA2 /* libPods-DBNetworkingDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		866BE83C1EBB1B5A0020A9D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		866BE8471EBB1B5A0020A9D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2743332EEC884CEC6C84D88C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE51EB01B581D0B5AAB86988 /* libPods-DBNetworkingDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		866BE81D1EBB1B5A0020A9D0 = {
+			isa = PBXGroup;
+			children = (
+				866BE8281EBB1B5A0020A9D0 /* DBNetworkingDemo */,
+				866BE8421EBB1B5A0020A9D0 /* DBNetworkingDemoTests */,
+				866BE84D1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests */,
+				866BE8271EBB1B5A0020A9D0 /* Products */,
+				FD5B09708256C114EBD48E5C /* Pods */,
+				2743332EEC884CEC6C84D88C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		866BE8271EBB1B5A0020A9D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				866BE8261EBB1B5A0020A9D0 /* DBNetworkingDemo.app */,
+				866BE83F1EBB1B5A0020A9D0 /* DBNetworkingDemoTests.xctest */,
+				866BE84A1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		866BE8281EBB1B5A0020A9D0 /* DBNetworkingDemo */ = {
+			isa = PBXGroup;
+			children = (
+				866BE85C1EBB1B9F0020A9D0 /* DBNetworking */,
+				866BE82C1EBB1B5A0020A9D0 /* AppDelegate.h */,
+				866BE82D1EBB1B5A0020A9D0 /* AppDelegate.m */,
+				866BE82F1EBB1B5A0020A9D0 /* ViewController.h */,
+				866BE8301EBB1B5A0020A9D0 /* ViewController.m */,
+				866BE8321EBB1B5A0020A9D0 /* Main.storyboard */,
+				866BE8351EBB1B5A0020A9D0 /* Assets.xcassets */,
+				866BE8371EBB1B5A0020A9D0 /* LaunchScreen.storyboard */,
+				866BE83A1EBB1B5A0020A9D0 /* Info.plist */,
+				866BE8291EBB1B5A0020A9D0 /* Supporting Files */,
+			);
+			path = DBNetworkingDemo;
+			sourceTree = "<group>";
+		};
+		866BE8291EBB1B5A0020A9D0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				866BE82A1EBB1B5A0020A9D0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		866BE8421EBB1B5A0020A9D0 /* DBNetworkingDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				866BE8431EBB1B5A0020A9D0 /* DBNetworkingDemoTests.m */,
+				866BE8451EBB1B5A0020A9D0 /* Info.plist */,
+			);
+			path = DBNetworkingDemoTests;
+			sourceTree = "<group>";
+		};
+		866BE84D1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				866BE84E1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.m */,
+				866BE8501EBB1B5A0020A9D0 /* Info.plist */,
+			);
+			path = DBNetworkingDemoUITests;
+			sourceTree = "<group>";
+		};
+		866BE85C1EBB1B9F0020A9D0 /* DBNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				866BE85D1EBB1B9F0020A9D0 /* DBNetworking.h */,
+				866BE85E1EBB1B9F0020A9D0 /* Manager */,
+				866BE8611EBB1B9F0020A9D0 /* Reachability */,
+				866BE8641EBB1B9F0020A9D0 /* Security */,
+				866BE8671EBB1B9F0020A9D0 /* Serialization */,
+				866BE86C1EBB1B9F0020A9D0 /* Session */,
+			);
+			name = DBNetworking;
+			path = ../../DBNetworking;
+			sourceTree = "<group>";
+		};
+		866BE85E1EBB1B9F0020A9D0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				866BE85F1EBB1B9F0020A9D0 /* DBNetWorkingManager.h */,
+				866BE8601EBB1B9F0020A9D0 /* DBNetWorkingManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		866BE8611EBB1B9F0020A9D0 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				866BE8621EBB1B9F0020A9D0 /* DBNetworkReachabilityManager.h */,
+				866BE8631EBB1B9F0020A9D0 /* DBNetworkReachabilityManager.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		866BE8641EBB1B9F0020A9D0 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				866BE8651EBB1B9F0020A9D0 /* DBSecurityPolicy.h */,
+				866BE8661EBB1B9F0020A9D0 /* DBSecurityPolicy.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		866BE8671EBB1B9F0020A9D0 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				866BE8681EBB1B9F0020A9D0 /* DBURLRequestSerialization.h */,
+				866BE8691EBB1B9F0020A9D0 /* DBURLRequestSerialization.m */,
+				866BE86A1EBB1B9F0020A9D0 /* DBURLResponseSerialization.h */,
+				866BE86B1EBB1B9F0020A9D0 /* DBURLResponseSerialization.m */,
+			);
+			path = Serialization;
+			sourceTree = "<group>";
+		};
+		866BE86C1EBB1B9F0020A9D0 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				866BE86D1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.h */,
+				866BE86E1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m */,
+				866BE86F1EBB1B9F0020A9D0 /* DBURLSessionManager.h */,
+				866BE8701EBB1B9F0020A9D0 /* DBURLSessionManager.m */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		FD5B09708256C114EBD48E5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8865DE67C61BBFCA3C032932 /* Pods-DBNetworkingDemo.debug.xcconfig */,
+				26F6173BCEB0062E5FAE5DB2 /* Pods-DBNetworkingDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		866BE8251EBB1B5A0020A9D0 /* DBNetworkingDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 866BE8531EBB1B5A0020A9D0 /* Build configuration list for PBXNativeTarget "DBNetworkingDemo" */;
+			buildPhases = (
+				46A830CF0F06FA0A428094BF /* [CP] Check Pods Manifest.lock */,
+				866BE8221EBB1B5A0020A9D0 /* Sources */,
+				866BE8231EBB1B5A0020A9D0 /* Frameworks */,
+				866BE8241EBB1B5A0020A9D0 /* Resources */,
+				C539FF6A4FE0A040CEA535C9 /* [CP] Embed Pods Frameworks */,
+				8964E2109E3B1147C6591BD9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DBNetworkingDemo;
+			productName = DBNetworkingDemo;
+			productReference = 866BE8261EBB1B5A0020A9D0 /* DBNetworkingDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		866BE83E1EBB1B5A0020A9D0 /* DBNetworkingDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 866BE8561EBB1B5A0020A9D0 /* Build configuration list for PBXNativeTarget "DBNetworkingDemoTests" */;
+			buildPhases = (
+				866BE83B1EBB1B5A0020A9D0 /* Sources */,
+				866BE83C1EBB1B5A0020A9D0 /* Frameworks */,
+				866BE83D1EBB1B5A0020A9D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				866BE8411EBB1B5A0020A9D0 /* PBXTargetDependency */,
+			);
+			name = DBNetworkingDemoTests;
+			productName = DBNetworkingDemoTests;
+			productReference = 866BE83F1EBB1B5A0020A9D0 /* DBNetworkingDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		866BE8491EBB1B5A0020A9D0 /* DBNetworkingDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 866BE8591EBB1B5A0020A9D0 /* Build configuration list for PBXNativeTarget "DBNetworkingDemoUITests" */;
+			buildPhases = (
+				866BE8461EBB1B5A0020A9D0 /* Sources */,
+				866BE8471EBB1B5A0020A9D0 /* Frameworks */,
+				866BE8481EBB1B5A0020A9D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				866BE84C1EBB1B5A0020A9D0 /* PBXTargetDependency */,
+			);
+			name = DBNetworkingDemoUITests;
+			productName = DBNetworkingDemoUITests;
+			productReference = 866BE84A1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		866BE81E1EBB1B5A0020A9D0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Dabay;
+				TargetAttributes = {
+					866BE8251EBB1B5A0020A9D0 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = W58KGB664J;
+						ProvisioningStyle = Automatic;
+					};
+					866BE83E1EBB1B5A0020A9D0 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = W58KGB664J;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 866BE8251EBB1B5A0020A9D0;
+					};
+					866BE8491EBB1B5A0020A9D0 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = W58KGB664J;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 866BE8251EBB1B5A0020A9D0;
+					};
+				};
+			};
+			buildConfigurationList = 866BE8211EBB1B5A0020A9D0 /* Build configuration list for PBXProject "DBNetworkingDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 866BE81D1EBB1B5A0020A9D0;
+			productRefGroup = 866BE8271EBB1B5A0020A9D0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				866BE8251EBB1B5A0020A9D0 /* DBNetworkingDemo */,
+				866BE83E1EBB1B5A0020A9D0 /* DBNetworkingDemoTests */,
+				866BE8491EBB1B5A0020A9D0 /* DBNetworkingDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		866BE8241EBB1B5A0020A9D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				866BE8391EBB1B5A0020A9D0 /* LaunchScreen.storyboard in Resources */,
+				866BE8361EBB1B5A0020A9D0 /* Assets.xcassets in Resources */,
+				866BE8341EBB1B5A0020A9D0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		866BE83D1EBB1B5A0020A9D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		866BE8481EBB1B5A0020A9D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46A830CF0F06FA0A428094BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8964E2109E3B1147C6591BD9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DBNetworkingDemo/Pods-DBNetworkingDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C539FF6A4FE0A040CEA535C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DBNetworkingDemo/Pods-DBNetworkingDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		866BE8221EBB1B5A0020A9D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				866BE8741EBB1B9F0020A9D0 /* DBURLRequestSerialization.m in Sources */,
+				866BE8311EBB1B5A0020A9D0 /* ViewController.m in Sources */,
+				866BE8731EBB1B9F0020A9D0 /* DBSecurityPolicy.m in Sources */,
+				866BE8711EBB1B9F0020A9D0 /* DBNetWorkingManager.m in Sources */,
+				866BE8771EBB1B9F0020A9D0 /* DBURLSessionManager.m in Sources */,
+				866BE82E1EBB1B5A0020A9D0 /* AppDelegate.m in Sources */,
+				866BE8751EBB1B9F0020A9D0 /* DBURLResponseSerialization.m in Sources */,
+				866BE8761EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m in Sources */,
+				866BE82B1EBB1B5A0020A9D0 /* main.m in Sources */,
+				866BE8721EBB1B9F0020A9D0 /* DBNetworkReachabilityManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		866BE83B1EBB1B5A0020A9D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				866BE8441EBB1B5A0020A9D0 /* DBNetworkingDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		866BE8461EBB1B5A0020A9D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				866BE84F1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		866BE8411EBB1B5A0020A9D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 866BE8251EBB1B5A0020A9D0 /* DBNetworkingDemo */;
+			targetProxy = 866BE8401EBB1B5A0020A9D0 /* PBXContainerItemProxy */;
+		};
+		866BE84C1EBB1B5A0020A9D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 866BE8251EBB1B5A0020A9D0 /* DBNetworkingDemo */;
+			targetProxy = 866BE84B1EBB1B5A0020A9D0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		866BE8321EBB1B5A0020A9D0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				866BE8331EBB1B5A0020A9D0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		866BE8371EBB1B5A0020A9D0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				866BE8381EBB1B5A0020A9D0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		866BE8511EBB1B5A0020A9D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		866BE8521EBB1B5A0020A9D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		866BE8541EBB1B5A0020A9D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8865DE67C61BBFCA3C032932 /* Pods-DBNetworkingDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W58KGB664J;
+				INFOPLIST_FILE = DBNetworkingDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.dabay.DBNetworkingDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		866BE8551EBB1B5A0020A9D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26F6173BCEB0062E5FAE5DB2 /* Pods-DBNetworkingDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = W58KGB664J;
+				INFOPLIST_FILE = DBNetworkingDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.dabay.DBNetworkingDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		866BE8571EBB1B5A0020A9D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = W58KGB664J;
+				INFOPLIST_FILE = DBNetworkingDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.dabay.DBNetworkingDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DBNetworkingDemo.app/DBNetworkingDemo";
+			};
+			name = Debug;
+		};
+		866BE8581EBB1B5A0020A9D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = W58KGB664J;
+				INFOPLIST_FILE = DBNetworkingDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.dabay.DBNetworkingDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DBNetworkingDemo.app/DBNetworkingDemo";
+			};
+			name = Release;
+		};
+		866BE85A1EBB1B5A0020A9D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = W58KGB664J;
+				INFOPLIST_FILE = DBNetworkingDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.dabay.DBNetworkingDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DBNetworkingDemo;
+			};
+			name = Debug;
+		};
+		866BE85B1EBB1B5A0020A9D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = W58KGB664J;
+				INFOPLIST_FILE = DBNetworkingDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.dabay.DBNetworkingDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = DBNetworkingDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		866BE8211EBB1B5A0020A9D0 /* Build configuration list for PBXProject "DBNetworkingDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				866BE8511EBB1B5A0020A9D0 /* Debug */,
+				866BE8521EBB1B5A0020A9D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		866BE8531EBB1B5A0020A9D0 /* Build configuration list for PBXNativeTarget "DBNetworkingDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				866BE8541EBB1B5A0020A9D0 /* Debug */,
+				866BE8551EBB1B5A0020A9D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		866BE8561EBB1B5A0020A9D0 /* Build configuration list for PBXNativeTarget "DBNetworkingDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				866BE8571EBB1B5A0020A9D0 /* Debug */,
+				866BE8581EBB1B5A0020A9D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		866BE8591EBB1B5A0020A9D0 /* Build configuration list for PBXNativeTarget "DBNetworkingDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				866BE85A1EBB1B5A0020A9D0 /* Debug */,
+				866BE85B1EBB1B5A0020A9D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 866BE81E1EBB1B5A0020A9D0 /* Project object */;
+}
