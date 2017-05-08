@@ -22,8 +22,8 @@
     
     //配置在APPdelegate中，在APP代理代理方法didFinishLaunching中设置一次即可
     DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
-    manager.db_BaseURLString=@"";
-    manager.db_certificateString=@"";
+    manager.db_BaseURLString=@"http://taofei.me";
+    manager.db_certificateString=@"*.dabay.cn";
     
     
     //请求参数
