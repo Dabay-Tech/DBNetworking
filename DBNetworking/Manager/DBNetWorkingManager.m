@@ -24,6 +24,8 @@
     static DBNetWorkingManager * setSharedInstance;
     dispatch_once(&onceToken, ^{//线程锁
         setSharedInstance = [[DBNetWorkingManager alloc] init];
+        setSharedInstance.db_NetworkReachabilityManager=[AFNetworkReachabilityManager sharedManager];
+        [setSharedInstance setup];
     });
     return setSharedInstance;
 }
@@ -32,7 +34,26 @@
 
 
 
+/**
+ DBNetworkingManager类的单例对象的初始化
+ */
+-(void)setup{
 
+    
+    [self.db_NetworkReachabilityManager startMonitoring];
+
+}
+
+
+
+-(void)dealloc{
+
+    [self.db_NetworkReachabilityManager stopMonitoring];
+    self.db_BaseURLString=nil;
+    self.db_certificateString=nil;
+    self.db_NetworkReachabilityManager=nil;
+    NSLog(@"DBNetworking--DBNetWorkingManager--单例被销毁");
+}
 
 
 

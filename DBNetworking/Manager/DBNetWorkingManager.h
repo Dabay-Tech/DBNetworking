@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 #import "DBNetworking.h"
+#import "DBNetworkReachabilityManager.h"
 
 
-#define openHttpsSSL YES
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,17 +36,21 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - DBNetworkingManager的属性
 
 /** 证书名的字符串 */
-@property (nonatomic, strong, nullable) NSString *db_certificateString;
+@property (nonatomic, strong, nullable) NSString * db_certificateString;
 /** 整个项目的网络请求的URL的基地址 */
-@property (nonatomic, strong, nullable) NSString *db_BaseURLString;
+@property (nonatomic, strong, nullable) NSString * db_BaseURLString;
+/** 网络是否可用的管理者 */
+@property (nonatomic, strong, nullable) AFNetworkReachabilityManager * db_NetworkReachabilityManager;
+
+
 
 
 
 
 #pragma mark - 获取DBNetworking的单例对象
 /**
- * @brief TFNetworkingManager的类方法，创建并获取TFNetworkingManager的单例对象
- * @return 返回类型为TFNetWorkingManager的单例对象
+ * @brief DBNetworkingManager的类方法，创建并获取DBNetworkingManager的单例对象
+ * @return 返回类型为DBNetWorkingManager的单例对象
  */
 + (instancetype)sharedManager;
 

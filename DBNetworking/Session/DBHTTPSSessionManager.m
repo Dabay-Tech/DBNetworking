@@ -73,31 +73,34 @@
 #pragma mark - 网络请求方法
 
 
+
 /**
  DBNetworking HTTPS请求 默认为POST请求
 
  @param URLString 网络请求的URL地址字符串
  @param parameters 网络请求的参数
+ @param isWithHUD 是否带有HUD提示
  @param successBlock 网络请求成功的回调
  @param failedBlock 网络请求失败的回调
  */
-+(void)db_postRequestWithURLString:(NSString*)URLString Parameterss:(NSDictionary *)parameters succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
++(void)db_postRequestWithURLString:(NSString*)URLString Parameterss:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
 
-    [self db_requestWithURLString:URLString httpsMethod:DB_HTTPSMETHOD_POST parameters:parameters succeed:successBlock failure:failedBlock];
+
+    [self db_requestWithURLString:URLString httpsMethod:DB_HTTPSMETHOD_POST parameters:parameters isWithHUD:isWithHUD succeed:successBlock failure:failedBlock];
 }
-
 
 
 /**
  DBNetworking HTTPS请求 可以选择请求方式：GET,POST
- 
+
  @param URLString 网络请求的URL地址字符串
  @param method 网络请求的方式：GET/POST
  @param parameters 网络请求的参数
+ @param isWithHUD 是否带有HUD提示
  @param successBlock 网络请求成功的回调
  @param failedBlock 网络请求失败的回调
  */
-+(void)db_requestWithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
++(void)db_requestWithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
     
     //1.创建HTTPS的session管理者
     DBHTTPSSessionManager *manager=[DBHTTPSSessionManager db_httpsSessionManager];
@@ -116,7 +119,7 @@
             NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
             
             if (!cerData) {
-                NSLog(@"TFNetWorking处理时证书文件未获取到，.cer文件为空");
+                NSLog(@"DBNetWorking处理时证书文件未获取到，.cer文件为空");
                 return 0;
             }
             

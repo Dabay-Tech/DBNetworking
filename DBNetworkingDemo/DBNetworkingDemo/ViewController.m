@@ -27,15 +27,16 @@
     
     
     //请求参数
-    NSDictionary *param=[[NSDictionary alloc]init];
-    
-    [DBHTTPSSessionManager db_postRequestWithURLString:@"" Parameterss:param succeed:^(NSDictionary * _Nonnull responseDictionary) {
-        
-        
-    } failure:^(NSError * _Nonnull error) {
-        
-        
-    }];
+//    NSDictionary *param=[[NSDictionary alloc]init];
+//    
+//    
+//    [DBHTTPSSessionManager db_postRequestWithURLString:@"" Parameterss:param succeed:^(NSDictionary * _Nonnull responseDictionary) {
+//        
+//        
+//    } failure:^(NSError * _Nonnull error) {
+//        
+//        
+//    }];
     
     
 }
