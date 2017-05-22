@@ -37,15 +37,15 @@
     NSString *baseURLString=[DBNetWorkingManager sharedManager].db_BaseURLString;
     NSURL *baseURL=[NSURL URLWithString:baseURLString];
     DBHTTPSSessionManager *db_HttpsSessionManager=[[DBHTTPSSessionManager alloc]initWithBaseURL:baseURL];
-    //2.设置tf_HttpsSessionManager的安全策略
-    [self setupSecurityPolicyForTFHttpsSessionManager:db_HttpsSessionManager];
-    //3.设置tf_HttpsSessionManager的请求和返回
-    [self setupRequestAndResponseSerializerForTFHttpsSessionManager:db_HttpsSessionManager];
+    //2.设置db_HttpsSessionManager的安全策略
+    [self setupSecurityPolicyForDBHttpsSessionManager:db_HttpsSessionManager];
+    //3.设置db_HttpsSessionManager的请求和返回
+    [self setupRequestAndResponseSerializerForDBHttpsSessionManager:db_HttpsSessionManager];
     return db_HttpsSessionManager;
 }
 
 /** 设置db_HttpsSessionManager的安全策略 */
-+(void)setupSecurityPolicyForTFHttpsSessionManager:(DBHTTPSSessionManager *)db_HttpsSessionManager{
++(void)setupSecurityPolicyForDBHttpsSessionManager:(DBHTTPSSessionManager *)db_HttpsSessionManager{
     
     NSString * certificateString=[DBNetWorkingManager sharedManager].db_certificateString;
     //设置安全策略
@@ -59,7 +59,7 @@
 }
 
 /** 设置db_HttpsSessionManager请求和返回的Serializer */
-+(void)setupRequestAndResponseSerializerForTFHttpsSessionManager:(DBHTTPSSessionManager *)db_HttpsSessionManager{
++(void)setupRequestAndResponseSerializerForDBHttpsSessionManager:(DBHTTPSSessionManager *)db_HttpsSessionManager{
     //初始化网络请求的设置
     db_HttpsSessionManager.requestSerializer.timeoutInterval = 30.0;//默认设置请求的超时时间为30s
     db_HttpsSessionManager.responseSerializer.stringEncoding=NSUTF8StringEncoding;
@@ -161,7 +161,7 @@
             return disposition;
         }];
     }else{
-        NSLog(@"URLString为nil，被TFNetWorking拦截，网络请求未发送");
+        NSLog(@"URLString为nil，被DBNetWorking拦截，网络请求未发送");
         return;
     }
     
@@ -172,11 +172,11 @@
                 NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                 successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
             }else{
-                NSLog(@"TFNetWorking发送GET请求时失败，链接异常或网络不存在");
+                NSLog(@"DBNetWorking发送GET请求时失败，链接异常或网络不存在");
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failedBlock(error);
-            NSLog(@"TFNetworking-请求-GET-请求失败-error=%@",error);
+            NSLog(@"DBNetWorking-请求-GET-请求失败-error=%@",error);
         }];
     }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
         [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -191,11 +191,11 @@
                 NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                 successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
             }else{
-                NSLog(@"TFNetWorking发送POST请求时失败，链接异常或网络不存在");
+                NSLog(@"DBNetWorking发送POST请求时失败，链接异常或网络不存在");
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failedBlock(error);
-            NSLog(@"TFNetworking-请求-POST-请求失败-error=%@",error);
+            NSLog(@"DBNetWorking-请求-POST-请求失败-error=%@",error);
         }];
     }
 }
@@ -210,7 +210,7 @@
 +(void)db_processingErrorInfoWithDictionary:(NSDictionary *)errorInfo{
 
 
-    NSLog(@"TFNetworking-网络请求成功-处理相关错误信息中-");
+    NSLog(@"DBNetWorking-网络请求成功-处理相关错误信息中-");
     NSLog(@"errorInfo--%@",errorInfo);
     NSLog(@"description--%@",errorInfo[@"data"][@"description"]);
 }
