@@ -1,7 +1,7 @@
 //
 //  DBNetworking.h
 //
-//  Copyright (c) 2016-2017 DBNetworking https://github.com/Dabay-Tech/DBNetworking
+//  Copyright (c) 2016-2016 DBNetworking https://github.com/Dabay-Tech/DBNetworking
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - DBNetworkingManager的属性
 
-/** 证书名的字符串 */
+/** 证书名称的字符串 */
 @property (nonatomic, strong, nullable) NSString * db_certificateString;
 /** 整个项目的网络请求的URL的基地址 */
 @property (nonatomic, strong, nullable) NSString * db_BaseURLString;
