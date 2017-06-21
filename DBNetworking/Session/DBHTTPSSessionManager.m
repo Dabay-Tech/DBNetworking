@@ -14,7 +14,7 @@
 #import <TargetConditionals.h>
 #import <Security/Security.h>
 
-#import <DBProgressHUD.h>//大白-HUD
+#import <DBProgressHUD/DBProgressHUD.h>//大白-HUD
 
 #import <netinet/in.h>
 #import <netinet6/in6.h>
