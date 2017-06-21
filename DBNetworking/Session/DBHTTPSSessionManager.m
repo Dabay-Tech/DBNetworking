@@ -14,6 +14,8 @@
 #import <TargetConditionals.h>
 #import <Security/Security.h>
 
+#import <DBProgressHUD.h>//大白-HUD
+
 #import <netinet/in.h>
 #import <netinet6/in6.h>
 #import <arpa/inet.h>
@@ -37,17 +39,22 @@
     NSString *baseURLString=[DBNetWorkingManager sharedManager].db_BaseURLString;
     NSURL *baseURL=[NSURL URLWithString:baseURLString];
     DBHTTPSSessionManager *db_HttpsSessionManager=[[DBHTTPSSessionManager alloc]initWithBaseURL:baseURL];
+    
     //2.设置db_HttpsSessionManager的安全策略
     [self setupSecurityPolicyForDBHttpsSessionManager:db_HttpsSessionManager];
+    
     //3.设置db_HttpsSessionManager的请求和返回
     [self setupRequestAndResponseSerializerForDBHttpsSessionManager:db_HttpsSessionManager];
     return db_HttpsSessionManager;
 }
 
+
+
 /** 设置db_HttpsSessionManager的安全策略 */
 +(void)setupSecurityPolicyForDBHttpsSessionManager:(DBHTTPSSessionManager *)db_HttpsSessionManager{
     
     NSString * certificateString=[DBNetWorkingManager sharedManager].db_certificateString;
+    
     //设置安全策略
     NSString *cerPath = [[NSBundle mainBundle] pathForResource:certificateString ofType:@"cer"];
     NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
@@ -60,6 +67,7 @@
 
 /** 设置db_HttpsSessionManager请求和返回的Serializer */
 +(void)setupRequestAndResponseSerializerForDBHttpsSessionManager:(DBHTTPSSessionManager *)db_HttpsSessionManager{
+    
     //初始化网络请求的设置
     db_HttpsSessionManager.requestSerializer.timeoutInterval = 30.0;//默认设置请求的超时时间为30s
     db_HttpsSessionManager.responseSerializer.stringEncoding=NSUTF8StringEncoding;
@@ -177,6 +185,7 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failedBlock(error);
             NSLog(@"DBNetWorking-请求-GET-请求失败-error=%@",error);
+            [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
         }];
     }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
         [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -196,6 +205,7 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             failedBlock(error);
             NSLog(@"DBNetWorking-请求-POST-请求失败-error=%@",error);
+            [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
         }];
     }
 }
@@ -210,9 +220,10 @@
 +(void)db_processingErrorInfoWithDictionary:(NSDictionary *)errorInfo{
 
 
-    NSLog(@"DBNetWorking-网络请求成功-处理相关错误信息中-");
-    NSLog(@"errorInfo--%@",errorInfo);
-    NSLog(@"description--%@",errorInfo[@"data"][@"description"]);
+    NSLog(@"DBNetWorking-网络请求成功");
+    NSLog(@"网络请求成功但是要处理相关-业务逻辑-");
+    //NSLog(@"errorInfo--%@",errorInfo);
+    //NSLog(@"description--%@",errorInfo[@"data"][@"description"]);
 }
 
 

@@ -73,7 +73,7 @@ typedef void (^FailedBlock)(NSError *error);
  @param URLString 网络请求的URL地址字符串
  @param method 网络请求的方式：GET/POST
  @param parameters 网络请求的参数
- @param isWithHUD 是否带有HUD
+ @param isWithHUD 是否带有HUD提示
  @param successBlock 网络请求成功的回调
  @param failedBlock 网络请求失败的回调
  */

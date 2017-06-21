@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.frameworks   = "CFNetwork",'Security'
   s.requires_arc = true
   s.dependency  "AFNetworking", "~> 3.1.0"
-  s.dependency  "MBProgressHUD-DBExtension", "~> 1.0.0"
+  s.dependency  "DBProgressHUD"
 
 end
