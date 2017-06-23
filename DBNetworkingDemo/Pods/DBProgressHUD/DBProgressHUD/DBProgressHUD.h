@@ -6,7 +6,9 @@
 //  Copyright © 2017年 Dabay. All rights reserved.
 //
 
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+
+
 
 
 @interface DBProgressHUD : MBProgressHUD
@@ -48,7 +50,7 @@
  @param message 提示信息
  @param view HUD要加载到的View
  */
-+ (void)db_showMessage:(NSString *)message toView:(UIView *)view;
++ (DBProgressHUD *)db_showMessage:(NSString *)message toView:(UIView *)view;
 
 
 /**
@@ -72,8 +74,13 @@
 
  @param message 提示信息
  */
-+ (void)db_showMessage:(NSString *)message;
++ (DBProgressHUD *)db_showMessage:(NSString *)message;
 
+
+/**
+ 隐藏带有动画的加载HUD
+ */
+-(void)db_dismissLoadingMessage;
 
 /**
  隐藏HUD

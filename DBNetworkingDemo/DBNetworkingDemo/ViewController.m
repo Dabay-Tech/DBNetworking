@@ -26,15 +26,25 @@
     
     //配置在APPdelegate中，在APP代理代理方法didFinishLaunching中设置一次即可
     DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
-    manager.db_BaseURLString=@"http://taofei.me";
+    manager.db_BaseURLString=@"http://122.226.66.214:7780/ywcitzencard";
     manager.db_certificateString=@"*.dabay.cn";
     
-    
-    self.hud=[DBProgressHUD db_showLoading:@"加载中" toView:self.view];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    
+    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameterss:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDictionary) {
         
-        [DBProgressHUD hideHUDForView:self.view animated:YES];
-    });
+        
+        NSLog(@"viewdidload--请求成功");
+    } failure:^(NSError * _Nonnull error) {
+        
+        NSLog(@"viewdidload--请求失败");
+    }];
+    
+    
+    [DBProgressHUD db_showError:@"加载失败"];
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [hud db_dismissLoadingMessage];
+//    });
     
     
     

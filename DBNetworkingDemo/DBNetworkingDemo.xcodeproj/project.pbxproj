@@ -22,6 +22,7 @@
 		866BE8751EBB1B9F0020A9D0 /* DBURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE86B1EBB1B9F0020A9D0 /* DBURLResponseSerialization.m */; };
 		866BE8761EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE86E1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m */; };
 		866BE8771EBB1B9F0020A9D0 /* DBURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8701EBB1B9F0020A9D0 /* DBURLSessionManager.m */; };
+		86B11EEA1EFD0418000DB1FD /* *.dabay.cn.cer in Resources */ = {isa = PBXBuildFile; fileRef = 86B11EE91EFD0418000DB1FD /* *.dabay.cn.cer */; };
 		B943FE24814B3CD0391C6DA2 /* libPods-DBNetworkingDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE51EB01B581D0B5AAB86988 /* libPods-DBNetworkingDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		866BE86E1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHTTPSSessionManager.m; sourceTree = "<group>"; };
 		866BE86F1EBB1B9F0020A9D0 /* DBURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBURLSessionManager.h; sourceTree = "<group>"; };
 		866BE8701EBB1B9F0020A9D0 /* DBURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBURLSessionManager.m; sourceTree = "<group>"; };
+		86B11EE91EFD0418000DB1FD /* *.dabay.cn.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "*.dabay.cn.cer"; sourceTree = "<group>"; };
 		8865DE67C61BBFCA3C032932 /* Pods-DBNetworkingDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBNetworkingDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DBNetworkingDemo/Pods-DBNetworkingDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		CE51EB01B581D0B5AAB86988 /* libPods-DBNetworkingDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DBNetworkingDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 		866BE81D1EBB1B5A0020A9D0 = {
 			isa = PBXGroup;
 			children = (
+				86B11EE91EFD0418000DB1FD /* *.dabay.cn.cer */,
 				866BE8281EBB1B5A0020A9D0 /* DBNetworkingDemo */,
 				866BE8421EBB1B5A0020A9D0 /* DBNetworkingDemoTests */,
 				866BE84D1EBB1B5A0020A9D0 /* DBNetworkingDemoUITests */,
@@ -364,6 +367,7 @@
 			files = (
 				866BE8391EBB1B5A0020A9D0 /* LaunchScreen.storyboard in Resources */,
 				866BE8361EBB1B5A0020A9D0 /* Assets.xcassets in Resources */,
+				86B11EEA1EFD0418000DB1FD /* *.dabay.cn.cer in Resources */,
 				866BE8341EBB1B5A0020A9D0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

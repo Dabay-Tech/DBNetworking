@@ -110,104 +110,135 @@
  */
 +(void)db_requestWithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
     
-    //1.创建HTTPS的session管理者
-    DBHTTPSSessionManager *manager=[DBHTTPSSessionManager db_httpsSessionManager];
-    //2.证书的名称
-    NSString * certificateString=[DBNetWorkingManager sharedManager].db_certificateString;
-    //3.如果URLString里面是有效的URL地址
-    if (URLString != nil){
-        typeof (manager) weakManager = manager ;
-        [manager setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__autoreleasing *_credential) {
-            
-            //3.1获取服务器的 trust object
-            SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
-            
-            //3.2导入自签名证书
-            NSString *cerPath = [[NSBundle mainBundle] pathForResource:certificateString ofType:@"cer"];
-            NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
-            
-            if (!cerData) {
-                NSLog(@"DBNetWorking处理时证书文件未获取到，.cer文件为空");
-                return 0;
-            }
-            
-            weakManager.securityPolicy.pinnedCertificates = [NSSet setWithArray:@[cerData]];
-            SecCertificateRef caRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)cerData);
-            NSCAssert(caRef != nil, @"caRef is nil");
-            
-            NSArray *caArray = @[(__bridge id)(caRef)];
-            NSCAssert(caArray != nil, @"caArray is nil");
-            
-            //3.3将读取到的证书设置为serverTrust的根证书
-            OSStatus status = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)caArray);
-            SecTrustSetAnchorCertificatesOnly(serverTrust, NO);
-            NSCAssert(errSecSuccess == status, @"SectrustSetAnchorCertificates failed");
-            NSLog(@"status=%d",(int)status);
-            
-            //3.4选择质询认证的处理方式
-            NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-            __autoreleasing NSURLCredential *credential = nil;
-            
-            //3.5NSURLAuthenTicationMethodServerTrust质询认证方式
-            if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-                //基于客户端的安全策略来决定是否信任该服务器，不信任则不响应质询
-                if ([weakManager.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
-                    
-                    //创建质询证书
-                    credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-                    if (credential) {//确认质询方式
-                        disposition = NSURLSessionAuthChallengeUseCredential;
-                    } else {
-                        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-                    }
-                } else {//取消挑战
-                    disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
-                }
-            } else {
-                disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-            }
-            return disposition;
-        }];
-    }else{
-        NSLog(@"URLString为nil，被DBNetWorking拦截，网络请求未发送");
-        return;
-    }
+    NSLog(@"发送网络请求中。。。");
+    __block DBProgressHUD *hud = [DBProgressHUD db_showLoading:@"逃跑中..." toView:nil];
     
-    if (method == DB_HTTPSMETHOD_GET){//发送GET请求
-        [manager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if (successBlock){
-                NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
-            }else{
-                NSLog(@"DBNetWorking发送GET请求时失败，链接异常或网络不存在");
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            failedBlock(error);
-            NSLog(@"DBNetWorking-请求-GET-请求失败-error=%@",error);
-            [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
-        }];
-    }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
-        [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if (successBlock){
-                //1.网络请求成功后错误信息的处理
-                NSData *data = (NSData *)responseObject;
-                NSDictionary* adict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                [self db_processingErrorInfoWithDictionary:adict];
+    UIView * view = [[UIApplication sharedApplication].windows lastObject];
+    [view bringSubviewToFront:hud];
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //1.创建HTTPS的session管理者
+        DBHTTPSSessionManager *manager=[DBHTTPSSessionManager db_httpsSessionManager];
+        //2.证书的名称
+        NSString * certificateString=[DBNetWorkingManager sharedManager].db_certificateString;
+        //3.如果URLString里面是有效的URL地址
+        if (URLString != nil){
+            typeof (manager) weakManager = manager ;
+            [manager setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__autoreleasing *_credential) {
                 
-                //2.返回处理得到的字典
-                NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
-            }else{
-                NSLog(@"DBNetWorking发送POST请求时失败，链接异常或网络不存在");
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            failedBlock(error);
-            NSLog(@"DBNetWorking-请求-POST-请求失败-error=%@",error);
-            [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
-        }];
-    }
+                //3.1获取服务器的 trust object
+                SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
+                
+                //3.2导入自签名证书
+                NSString *cerPath = [[NSBundle mainBundle] pathForResource:certificateString ofType:@"cer"];
+                NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
+                
+                if (!cerData) {
+                    NSLog(@"DBNetWorking处理时证书文件未获取到，.cer文件为空");
+                    return 0;
+                }
+                
+                weakManager.securityPolicy.pinnedCertificates = [NSSet setWithArray:@[cerData]];
+                SecCertificateRef caRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)cerData);
+                NSCAssert(caRef != nil, @"caRef is nil");
+                
+                NSArray *caArray = @[(__bridge id)(caRef)];
+                NSCAssert(caArray != nil, @"caArray is nil");
+                
+                //3.3将读取到的证书设置为serverTrust的根证书
+                OSStatus status = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)caArray);
+                SecTrustSetAnchorCertificatesOnly(serverTrust, NO);
+                NSCAssert(errSecSuccess == status, @"SectrustSetAnchorCertificates failed");
+                NSLog(@"status=%d",(int)status);
+                
+                //3.4选择质询认证的处理方式
+                NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+                __autoreleasing NSURLCredential *credential = nil;
+                
+                //3.5NSURLAuthenTicationMethodServerTrust质询认证方式
+                if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+                    //基于客户端的安全策略来决定是否信任该服务器，不信任则不响应质询
+                    if ([weakManager.securityPolicy evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:challenge.protectionSpace.host]) {
+                        
+                        //创建质询证书
+                        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+                        if (credential) {//确认质询方式
+                            disposition = NSURLSessionAuthChallengeUseCredential;
+                        } else {
+                            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+                        }
+                    } else {//取消挑战
+                        disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+                    }
+                } else {
+                    disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+                }
+                return disposition;
+            }];
+        }else{
+            NSLog(@"URLString为nil，被DBNetWorking拦截，网络请求未发送");
+            return;
+        }
+        
+        if (method == DB_HTTPSMETHOD_GET){//发送GET请求
+            
+            [manager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                
+                //无论是成功还是失败-都结束加载中的提示
+                [hud db_dismissLoadingMessage];
+                
+                
+                if (successBlock){
+                    NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                    successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
+                }else{
+                    NSLog(@"DBNetWorking发送GET请求时失败，链接异常或网络不存在");
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+                //无论是成功还是失败-都结束加载中的提示
+                [hud db_dismissLoadingMessage];
+                
+                failedBlock(error);
+                NSLog(@"DBNetWorking-请求-GET-请求失败-error=%@",error);
+                [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
+            }];
+        }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
+            
+            
+            [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                
+                //无论是成功还是失败-都结束加载中的提示
+                [hud db_dismissLoadingMessage];
+                
+                if (successBlock){
+                    //1.网络请求成功后错误信息的处理
+                    NSData *data = (NSData *)responseObject;
+                    NSDictionary* adict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                    [self db_processingErrorInfoWithDictionary:adict];
+                    
+                    //2.返回处理得到的字典
+                    NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                    successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
+                }else{
+                    NSLog(@"DBNetWorking发送POST请求时失败，链接异常或网络不存在");
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+                //无论是成功还是失败-都结束加载中的提示
+                [hud db_dismissLoadingMessage];
+                
+                failedBlock(error);
+                NSLog(@"DBNetWorking-请求-POST-请求失败-error=%@",error);
+                [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
+            }];
+        }
+
+    });
+    
 }
 
 #pragma mark - 网络请求错误的处理
