@@ -23,31 +23,40 @@
  @param view HUD要加载到的View
  @return 返回HUD
  */
-+ (DBProgressHUD *)db_showLoading:(NSString *)message toView:(UIView *)view {
-    if (!view) {
-        view = [[UIApplication sharedApplication].windows lastObject];
-    }
-    DBProgressHUD *hud = [DBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.removeFromSuperViewOnHide = YES;
-    hud.mode = MBProgressHUDModeCustomView;
-    hud.animationType =MBProgressHUDAnimationFade;
-    hud.backgroundColor = [UIColor clearColor];
-    hud.bezelView.color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
++ (DBProgressHUD *)db_showLoading:(NSString *)message toView:(UIView *)view{
+
+
+    __block UIView * blockView = view;
+    __block DBProgressHUD * hud ;
     
-    //设置提示
-    hud.detailsLabel.text = message;
-    hud.detailsLabel.font = [UIFont systemFontOfSize:13];
-    
-    //这里不要只是这是detailsLabel的textColor，因为MBProgressHUD内部会设置label/detailsLabel的颜色为contentColor
-    hud.contentColor = [UIColor whiteColor];
-    
-    //添加动态加载logo
-    LoadingImageView * loadImageView = [LoadingImageView loadImageView];
-    hud.customView = loadImageView;
-    NSLog(@"当前线程--%@",[NSThread currentThread]);
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if (!view) {
+            blockView = [[UIApplication sharedApplication].windows lastObject];
+        }
+        DBProgressHUD *hud = [DBProgressHUD showHUDAddedTo:view animated:YES];
+        hud.removeFromSuperViewOnHide = YES;
+        hud.mode = MBProgressHUDModeCustomView;
+        hud.animationType =MBProgressHUDAnimationFade;
+        hud.backgroundColor = [UIColor clearColor];
+        hud.bezelView.color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
+        
+        //设置提示
+        hud.detailsLabel.text = message;
+        hud.detailsLabel.font = [UIFont systemFontOfSize:13];
+        
+        //这里不要只是这是detailsLabel的textColor，因为MBProgressHUD内部会设置label/detailsLabel的颜色为contentColor
+        hud.contentColor = [UIColor whiteColor];
+        
+        //添加动态加载logo
+        LoadingImageView * loadImageView = [LoadingImageView loadImageView];
+        hud.customView = loadImageView;
+        NSLog(@"当前线程--%@",[NSThread currentThread]);
+        
+    });
     
     return hud;
 }
+
 
 
 
