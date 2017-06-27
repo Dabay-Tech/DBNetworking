@@ -65,7 +65,7 @@
     
     //如果没有证书
     if(!cerData){
-        NSLog(@"DBNetWorking--HTTPS证书创建失败");
+        NSLog(@"DBNetWorking--HTTPS证书创建失败--没有找到相应的证书文件");
         return;
     }
     
@@ -137,6 +137,8 @@
         [DBProgressHUD db_showLoading:@"加载中..." toView:nil];
     }
     
+    
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //1.创建HTTPS的session管理者
         DBHTTPSSessionManager *manager=[DBHTTPSSessionManager db_httpsSessionManager];
@@ -197,7 +199,7 @@
                 return disposition;
             }];
         }else{
-            NSLog(@"URLString为nil，被DBNetWorking拦截，网络请求未发送");
+            NSLog(@"DBNetWorking--URLString为nil，被DBNetWorking拦截，网络请求未发送");
             return;
         }
         
@@ -210,12 +212,11 @@
                 [DBProgressHUD db_dismissLoadingMessage];
                 
                 
-                
                 if (successBlock){
                     NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                     successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
                 }else{
-                    NSLog(@"DBNetWorking发送GET请求时失败，链接异常或网络不存在");
+                    NSLog(@"DBNetWorking--发送GET请求时失败，链接异常或网络不存在");
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
@@ -224,7 +225,7 @@
 
                 
                 failedBlock(error);
-                NSLog(@"DBNetWorking-请求-GET-请求失败-error=%@",error);
+                NSLog(@"DBNetWorking--请求-GET-请求失败-error=%@",error);
                 [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
             }];
         }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
@@ -254,7 +255,7 @@
                 [DBProgressHUD db_dismissLoadingMessage];
                 
                 failedBlock(error);
-                NSLog(@"DBNetWorking-请求-POST-请求失败-error=%@",error);
+                NSLog(@"DBNetWorking--请求-POST-请求失败-error=%@",error);
                 [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
             }];
         }
@@ -273,8 +274,8 @@
 +(void)db_processingErrorInfoWithDictionary:(NSDictionary *)errorInfo{
 
 
-    NSLog(@"DBNetWorking-网络请求成功");
-    NSLog(@"网络请求成功但是要处理相关-业务逻辑-");
+    NSLog(@"DBNetWorking--网络请求成功");
+    NSLog(@"DBNetWorking--处理网络请求成功得到的数据");
     //NSLog(@"errorInfo--%@",errorInfo);
     //NSLog(@"description--%@",errorInfo[@"data"][@"description"]);
 }

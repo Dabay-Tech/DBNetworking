@@ -10,6 +10,7 @@
 
 #import "DBNetworking.h"
 #import <DBProgressHUD.h>
+#import "DBPoster.h"
 
 @interface ViewController ()
 
@@ -26,7 +27,7 @@
     
     //配置在APPdelegate中，在APP代理代理方法didFinishLaunching中设置一次即可
     DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
-    manager.db_BaseURLString=@"http://122.226.66.214:7780/ywcitzencard";
+    manager.db_BaseURLString=@"https://122.226.66.214:7780/ywcitzencard";
     manager.db_certificateString=@"*.dabay.cn";
 
     
@@ -42,14 +43,24 @@
     
     
 
-    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDictionary) {
+//    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDictionary) {
+//        
+//        
+//    } failure:^(NSError * _Nonnull error) {
+//        
+//        
+//    }];
+    
+    
+    
+    [DBPoster db_postURLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDictionary) {
         
         
-    } failure:^(NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         
         
     }];
-    
+
 
     
     

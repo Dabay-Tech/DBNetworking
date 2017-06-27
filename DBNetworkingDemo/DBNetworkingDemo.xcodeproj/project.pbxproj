@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86142AF81F025D2500E5207D /* DBPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 86142AF71F025D2500E5207D /* DBPoster.m */; };
 		866BE82B1EBB1B5A0020A9D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE82A1EBB1B5A0020A9D0 /* main.m */; };
 		866BE82E1EBB1B5A0020A9D0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE82D1EBB1B5A0020A9D0 /* AppDelegate.m */; };
 		866BE8311EBB1B5A0020A9D0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8301EBB1B5A0020A9D0 /* ViewController.m */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		26F6173BCEB0062E5FAE5DB2 /* Pods-DBNetworkingDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DBNetworkingDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DBNetworkingDemo/Pods-DBNetworkingDemo.release.xcconfig"; sourceTree = "<group>"; };
+		86142AF61F025D2500E5207D /* DBPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPoster.h; sourceTree = "<group>"; };
+		86142AF71F025D2500E5207D /* DBPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPoster.m; sourceTree = "<group>"; };
 		866BE8261EBB1B5A0020A9D0 /* DBNetworkingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DBNetworkingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866BE82A1EBB1B5A0020A9D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		866BE82C1EBB1B5A0020A9D0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -237,6 +240,8 @@
 				866BE86E1EBB1B9F0020A9D0 /* DBHTTPSSessionManager.m */,
 				866BE86F1EBB1B9F0020A9D0 /* DBURLSessionManager.h */,
 				866BE8701EBB1B9F0020A9D0 /* DBURLSessionManager.m */,
+				86142AF61F025D2500E5207D /* DBPoster.h */,
+				86142AF71F025D2500E5207D /* DBPoster.m */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				866BE8741EBB1B9F0020A9D0 /* DBURLRequestSerialization.m in Sources */,
+				86142AF81F025D2500E5207D /* DBPoster.m in Sources */,
 				866BE8311EBB1B5A0020A9D0 /* ViewController.m in Sources */,
 				866BE8731EBB1B9F0020A9D0 /* DBSecurityPolicy.m in Sources */,
 				866BE8711EBB1B9F0020A9D0 /* DBNetWorkingManager.m in Sources */,
