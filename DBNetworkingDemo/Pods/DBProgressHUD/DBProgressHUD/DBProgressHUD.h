@@ -11,7 +11,10 @@
 
 
 
+
 @interface DBProgressHUD : MBProgressHUD
+
+
 
 
 /**
@@ -19,9 +22,8 @@
  
  @param message 加载时的提示信息
  @param view HUD要加载到的View
- @return 返回HUD
  */
-+ (DBProgressHUD *)db_showLoading:(NSString *)message toView:(UIView *)view;
++ (void)db_showLoading:(NSString *)message toView:(UIView *)view;
 
 
 
@@ -80,7 +82,7 @@
 /**
  隐藏带有动画的加载HUD
  */
--(void)db_dismissLoadingMessage;
++(void)db_dismissLoadingMessage;
 
 /**
  隐藏HUD

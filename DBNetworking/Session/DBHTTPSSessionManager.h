@@ -56,6 +56,19 @@ typedef void (^FailedBlock)(NSError *error);
 
 #pragma mark - 网络请求方法
 
+
+
+
+/**
+ DBNetworking HTTPS请求 默认带有HUD
+
+ @param URLString 网络请求的URL地址字符串
+ @param parameters 网络请求的参数
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_postWithURLString:(NSString *)URLString Parameters:(NSDictionary *)parameters succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
+
 /**
  DBNetworking HTTPS请求 默认为POST请求
  
@@ -65,7 +78,7 @@ typedef void (^FailedBlock)(NSError *error);
  @param successBlock 网络请求成功的回调
  @param failedBlock 网络请求失败的回调
  */
-+(void)db_postRequestWithURLString:(NSString*)URLString Parameterss:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
++(void)db_postRequestWithURLString:(NSString*)URLString Parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
 
 /**
  DBNetworking HTTPS请求 可以选择请求方式：GET,POST

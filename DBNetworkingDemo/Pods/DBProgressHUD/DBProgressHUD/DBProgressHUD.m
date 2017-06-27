@@ -11,6 +11,9 @@
 
 
 
+
+
+
 @implementation DBProgressHUD
 
 
@@ -21,40 +24,40 @@
  
  @param message 加载的提示信息
  @param view HUD要加载到的View
- @return 返回HUD
  */
-+ (DBProgressHUD *)db_showLoading:(NSString *)message toView:(UIView *)view{
++ (void)db_showLoading:(NSString *)message toView:(UIView *)view{
 
 
     __block UIView * blockView = view;
     __block DBProgressHUD * hud ;
-    
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        if (!view) {
-            blockView = [[UIApplication sharedApplication].windows lastObject];
-        }
-        DBProgressHUD *hud = [DBProgressHUD showHUDAddedTo:view animated:YES];
-        hud.removeFromSuperViewOnHide = YES;
-        hud.mode = MBProgressHUDModeCustomView;
-        hud.animationType =MBProgressHUDAnimationFade;
-        hud.backgroundColor = [UIColor clearColor];
-        hud.bezelView.color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
+    hud.removeFromSuperViewOnHide = YES;
+    [view addSubview:hud];
+    [hud showAnimated:YES];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        //设置提示
+        if (blockView == nil) blockView = [[UIApplication sharedApplication].windows lastObject];
+        
+        // 快速显示一个提示信息
+        DBProgressHUD *hudTemp = [DBProgressHUD showHUDAddedTo:blockView animated:YES];
+        hud = hudTemp;
         hud.detailsLabel.text = message;
         hud.detailsLabel.font = [UIFont systemFontOfSize:13];
-        
         //这里不要只是这是detailsLabel的textColor，因为MBProgressHUD内部会设置label/detailsLabel的颜色为contentColor
         hud.contentColor = [UIColor whiteColor];
         
+        // 设置图片
         //添加动态加载logo
         LoadingImageView * loadImageView = [LoadingImageView loadImageView];
         hud.customView = loadImageView;
-        NSLog(@"当前线程--%@",[NSThread currentThread]);
         
+        // 再设置模式
+        hud.mode = MBProgressHUDModeCustomView;
+        
+        // 隐藏时候从父控件中移除
+        hud.removeFromSuperViewOnHide = YES;
+        hud.bezelView.color= [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
     });
-    
-    return hud;
 }
 
 
@@ -141,7 +144,6 @@
         
         // 2.0秒之后再消失
         [hud hideAnimated:YES afterDelay:2.0];
-        NSLog(@"当前线程--%@",[NSThread currentThread]);
     });
 }
 
@@ -172,7 +174,7 @@
         hud.detailsLabel.font = [UIFont systemFontOfSize:16]; //Johnkui - added
         hud.bezelView.color= [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
         // 1秒之后再消失
-        [hud hideAnimated:YES afterDelay:1.5];
+        [hud hideAnimated:YES afterDelay:2.0];
     });
 }
 
@@ -202,8 +204,8 @@
         hud.removeFromSuperViewOnHide = YES;
         hud.detailsLabel.font = [UIFont systemFontOfSize:16]; //Johnkui - added
         hud.bezelView.color= [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
-        // 1秒之后再消失
-        [hud hideAnimated:YES afterDelay:1.5];
+        // 2秒之后再消失
+        [hud hideAnimated:YES afterDelay:2.0];
     });
 }
 
@@ -297,11 +299,15 @@
 
 
 /**
- 隐藏
+ 隐藏加载中的LoadingView
  */
--(void)db_dismissLoadingMessage{
++(void)db_dismissLoadingMessage{
 
-    self.hidden=YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIView * blockView =nil;
+        if (blockView == nil) blockView = [[UIApplication sharedApplication].windows lastObject];
+            [self hideHUDForView:blockView animated:YES];
+    });
 }
 
 
@@ -314,7 +320,9 @@
 + (void)db_hideHUDForView:(UIView *)view
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self hideHUDForView:view animated:YES];
+        UIView * hudView =view;
+        if (hudView == nil) hudView = [[UIApplication sharedApplication].windows lastObject];
+        [self hideHUDForView:hudView animated:YES];
     });
 }
 
@@ -334,7 +342,10 @@
  */
 + (void)db_hideHUDAnimated:(BOOL)animated
 {
-    [self db_hideHUDAnimated:animated];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIView * hudView = [[UIApplication sharedApplication].windows lastObject];
+        [self hideHUDForView:hudView animated:animated];
+    });
 }
 
 

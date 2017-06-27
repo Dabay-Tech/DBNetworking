@@ -81,6 +81,20 @@
 #pragma mark - 网络请求方法
 
 
+/**
+ DBNetworking HTTPS请求 默认带有HUD
+ 
+ @param URLString 网络请求的URL地址字符串
+ @param parameters 网络请求的参数
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_postWithURLString:(NSString *)URLString Parameters:(NSDictionary *)parameters succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
+
+    [self db_postRequestWithURLString:URLString Parameters:parameters isWithHUD:YES succeed:successBlock failure:failedBlock];
+}
+
+
 
 /**
  DBNetworking HTTPS请求 默认为POST请求
@@ -91,7 +105,7 @@
  @param successBlock 网络请求成功的回调
  @param failedBlock 网络请求失败的回调
  */
-+(void)db_postRequestWithURLString:(NSString*)URLString Parameterss:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
++(void)db_postRequestWithURLString:(NSString*)URLString Parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
 
 
     [self db_requestWithURLString:URLString httpsMethod:DB_HTTPSMETHOD_POST parameters:parameters isWithHUD:isWithHUD succeed:successBlock failure:failedBlock];
@@ -110,12 +124,11 @@
  */
 +(void)db_requestWithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
     
-    NSLog(@"发送网络请求中。。。");
-    __block DBProgressHUD *hud = [DBProgressHUD db_showLoading:@"逃跑中..." toView:nil];
-    
-    UIView * view = [[UIApplication sharedApplication].windows lastObject];
-    [view bringSubviewToFront:hud];
-    
+
+
+    if(isWithHUD){
+        [DBProgressHUD db_showLoading:@"加载中..." toView:nil];
+    }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //1.创建HTTPS的session管理者
@@ -187,7 +200,8 @@
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [hud db_dismissLoadingMessage];
+                [DBProgressHUD db_dismissLoadingMessage];
+                
                 
                 
                 if (successBlock){
@@ -199,7 +213,8 @@
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [hud db_dismissLoadingMessage];
+                [DBProgressHUD db_dismissLoadingMessage];
+
                 
                 failedBlock(error);
                 NSLog(@"DBNetWorking-请求-GET-请求失败-error=%@",error);
@@ -212,7 +227,7 @@
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [hud db_dismissLoadingMessage];
+                [DBProgressHUD db_dismissLoadingMessage];
                 
                 if (successBlock){
                     //1.网络请求成功后错误信息的处理
@@ -229,7 +244,7 @@
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [hud db_dismissLoadingMessage];
+                [DBProgressHUD db_dismissLoadingMessage];
                 
                 failedBlock(error);
                 NSLog(@"DBNetWorking-请求-POST-请求失败-error=%@",error);
