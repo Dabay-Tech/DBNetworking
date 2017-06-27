@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DBNetworking"
-  s.version      = "1.0.7"
+  s.version      = "1.0.8"
   s.summary      = "Dabay tech : DBNetworking is a high level request util based on AFNetworking."
   s.homepage     = "https://github.com/Dabay-Tech/DBNetworking"
   s.license      = "MIT"
