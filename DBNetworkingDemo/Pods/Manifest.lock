@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - DBProgressHUD (1.1.1):
+  - DBProgressHUD (1.1.3):
     - MBProgressHUD (~> 1.0.0)
   - MBProgressHUD (1.0.0)
 
@@ -24,7 +24,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  DBProgressHUD: 06f231953e564a1d70ac74037ea084284fa8358c
+  DBProgressHUD: 805752b1954866ac35670786ebe0c04258490986
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
 
 PODFILE CHECKSUM: 90c69bd61915679cf699eca134485f0c39e33dd3
