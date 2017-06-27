@@ -62,6 +62,13 @@
     db_HttpsSessionManager.securityPolicy=[AFSecurityPolicy defaultPolicy];
     db_HttpsSessionManager.securityPolicy.allowInvalidCertificates=YES;//设置允许使用证书
     db_HttpsSessionManager.securityPolicy.validatesDomainName=NO;//是否需要验证域名
+    
+    //如果没有证书
+    if(!cerData){
+        NSLog(@"DBNetWorking--HTTPS证书创建失败");
+        return;
+    }
+    
     db_HttpsSessionManager.securityPolicy.pinnedCertificates=[NSSet setWithObject:cerData];
 }
 
