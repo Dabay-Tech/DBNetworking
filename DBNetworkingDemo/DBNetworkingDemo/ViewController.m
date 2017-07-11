@@ -31,7 +31,7 @@
     manager.db_certificateString=@"*.dabay.cn";
 
     
-//    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDictionary) {
+//    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDict) {
 //        
 //        
 //        NSLog(@"viewdidload--请求成功");
@@ -43,7 +43,7 @@
     
     
 
-//    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDictionary) {
+//    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDict) {
 //        
 //        
 //    } failure:^(NSError * _Nonnull error) {
@@ -53,12 +53,11 @@
     
     
     
-    [DBPoster db_postURLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDictionary) {
-        
-        
+    [DBPoster db_URLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {
+        NSLog(@"请求成功");
+        NSLog(@"responseDict--%@",responseDict);
     } failure:^(NSError *error) {
-        
-        
+        NSLog(@"请求失败");
     }];
     
 
@@ -74,7 +73,7 @@
 //    NSDictionary *param=[[NSDictionary alloc]init];
 //    
 //    
-//    [DBHTTPSSessionManager db_postRequestWithURLString:@"" Parameterss:param succeed:^(NSDictionary * _Nonnull responseDictionary) {
+//    [DBHTTPSSessionManager db_postRequestWithURLString:@"" Parameterss:param succeed:^(NSDictionary * _Nonnull responseDict) {
 //        
 //        
 //    } failure:^(NSError * _Nonnull error) {
