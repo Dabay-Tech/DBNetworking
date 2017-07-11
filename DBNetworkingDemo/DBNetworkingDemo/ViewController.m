@@ -28,7 +28,7 @@
     //配置在APPdelegate中，在APP代理代理方法didFinishLaunching中设置一次即可
     DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
     manager.db_BaseURLString=@"https://122.226.66.214:7780/ywcitzencard";
-    manager.db_certificateString=@"*.dabay.cn";
+    manager.db_certificateString=@"";
 
     
 //    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDict) {
