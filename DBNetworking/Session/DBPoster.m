@@ -57,6 +57,7 @@
 +(void)db_withHUDInView:(UIView *)view URLString:(NSString *)URLString parameters:(NSDictionary *)parameters succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
 
 
+    [DBHTTPSSessionManager db_postRequestWithURLString:URLString Parameters:parameters isWithHUD:YES inView:view succeed:successBlock failure:failedBlock];
 
 }
 
