@@ -58,7 +58,6 @@
 
 
     [DBHTTPSSessionManager db_postRequestWithURLString:URLString Parameters:parameters isWithHUD:YES inView:view succeed:successBlock failure:failedBlock];
-
 }
 
 
