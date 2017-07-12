@@ -92,8 +92,9 @@
 /** 开始监控 */
 -(void)db_startMonitoring{
     
-    NSLog(@"");
-
+    
+    NSLog(@"开始进行网络监听");
+    
     AFNetworkReachabilityManager *reachabilityManager =[AFNetworkReachabilityManager sharedManager];
     [reachabilityManager startMonitoring];
     
@@ -101,19 +102,54 @@
     //设置网路状态改变的
     [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
-        NSLog(@"WANGLUOZHAUNGTAI GAIBIAN");
         
+        NSString * tips = @"";
+        switch (status)
+        {
+            case AFNetworkReachabilityStatusUnknown:                // 未知网络
+                
+                tips = @"网络状态未知，请检查网络连接";
+                break;
+                
+            case AFNetworkReachabilityStatusNotReachable:           // 没有网络(断网)
+                
+                tips = @"网络连接断开，请检查网络连接";
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN:       // 手机自带网络
+                
+                
+                tips = @"2G/3G/4G网络已连接";
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi:       // WIFI
+                
+                tips = @"WiFi网络已连接";
+                break;
+        }
         
+        __block UIView * blockView = nil;
         
-        
-        
-        
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (blockView == nil) blockView = [[UIApplication sharedApplication].windows lastObject];
+            
+            UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20)];
+            tipsLabel.backgroundColor = [UIColor redColor];
+            tipsLabel.text = tips;
+            tipsLabel.textColor = [UIColor whiteColor];
+            tipsLabel.textAlignment = NSTextAlignmentCenter;
+            tipsLabel.font = [UIFont systemFontOfSize:12];
+            [blockView addSubview:tipsLabel];
+            
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [tipsLabel removeFromSuperview];
+            });
+            
+        });
         
     }];
-    
-
-
 }
 
 
@@ -124,6 +160,7 @@
 - (void)dealloc
 {
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+    NSLog(@"DBNetworkReachabilityManager被销毁-结束网络监听");
 }
 
 

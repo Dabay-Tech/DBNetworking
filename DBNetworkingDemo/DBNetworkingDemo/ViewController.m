@@ -16,6 +16,7 @@
 @interface ViewController ()
 
 @property(nonatomic,strong) DBProgressHUD *hud;
+@property(nonatomic,strong) DBNetworkReachabilityManager * re_manager;
 
 @end
 
@@ -79,112 +80,16 @@
 //        NSLog(@"请求失败");
 //    }];
     
-    AFNetworkReachabilityManager *reachabilityManager =[AFNetworkReachabilityManager sharedManager];
-    [reachabilityManager startMonitoring];
-    
-    
-    //设置网路状态改变的
-    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        
-        
-        NSString * tips = @"";
-        switch (status)
-        {
-            case AFNetworkReachabilityStatusUnknown:                // 未知网络
-
-                tips = @"网络状态未知，请检查网络连接";
-                break;
-
-            case AFNetworkReachabilityStatusNotReachable:           // 没有网络(断网)
-
-                tips = @"网络连接断开，请检查网络连接";
-                break;
-
-            case AFNetworkReachabilityStatusReachableViaWWAN:       // 手机自带网络
-
-
-                tips = @"2G/3G/4G网络已连接";
-                break;
-
-            case AFNetworkReachabilityStatusReachableViaWiFi:       // WIFI
-                
-                tips = @"WiFi网络已连接";
-                break;
-        }
-        
-        __block UIView * blockView = nil;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (blockView == nil) blockView = [[UIApplication sharedApplication].windows lastObject];
-            
-            UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20)];
-            tipsLabel.backgroundColor = [UIColor redColor];
-            tipsLabel.text = tips;
-            tipsLabel.textColor = [UIColor whiteColor];
-            tipsLabel.textAlignment = NSTextAlignmentCenter;
-            tipsLabel.font = [UIFont systemFontOfSize:12];
-            
-            
-            [blockView addSubview:tipsLabel];
-            
-            
-//            // 快速显示一个提示信息
-//            DBProgressHUD *hud = [DBProgressHUD showHUDAddedTo:blockView animated:YES];
-//            hud.detailsLabel.text= tips;
-//            //HUD的背景颜色
-//            hud.bezelView.color= [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.645362367021276];
-////            hud.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20);
-//            // YES代表需要蒙版效果
-//            hud.detailsLabel.font = [UIFont systemFontOfSize:16]; //Johnkui - added
-//            
-//            
-//            [hud hideAnimated:YES afterDelay:3.0];
-        });
-        
-        
-        
-        
-        
-        
-        
-        
-    }];
-
     
     
     
-    
-    
-    
-    
-    
-    //请求参数
-//    NSDictionary *param=[[NSDictionary alloc]init];
-//    
-//    
-//    [DBHTTPSSessionManager db_postRequestWithURLString:@"" Parameterss:param succeed:^(NSDictionary * _Nonnull responseDict) {
-//        
-//        
-//    } failure:^(NSError * _Nonnull error) {
-//        
-//        
-//    }];
-    
+    _re_manager=[DBNetworkReachabilityManager sharedManager];
+    [_re_manager db_startMonitoring];
+        
     
 }
 
 
-/**
- 隐藏状态栏
- 
- @return 返回状态栏是否隐藏
- */
--(BOOL)prefersStatusBarHidden
-
-{
-    
-    return YES;// 返回YES表示隐藏，返回NO表示显示
-}
 
 
 
