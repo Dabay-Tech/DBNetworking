@@ -210,7 +210,7 @@
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [DBProgressHUD db_dismissLoadingMessage];
+                [DBProgressHUD db_hideHUD];
                 
                 
                 if (successBlock){
@@ -222,7 +222,7 @@
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [DBProgressHUD db_dismissLoadingMessage];
+                [DBProgressHUD db_hideHUD];
 
                 
                 failedBlock(error);
@@ -236,7 +236,7 @@
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [DBProgressHUD db_dismissLoadingMessage];
+                [DBProgressHUD db_hideHUD];
                 
                 if (successBlock){
                     //1.网络请求成功后错误信息的处理
@@ -253,7 +253,7 @@
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
                 //无论是成功还是失败-都结束加载中的提示
-                [DBProgressHUD db_dismissLoadingMessage];
+                [DBProgressHUD db_hideHUD];
                 
                 failedBlock(error);
                 NSLog(@"DBNetWorking--请求-POST-请求失败-error=%@",error);

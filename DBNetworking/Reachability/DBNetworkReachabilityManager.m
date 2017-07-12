@@ -6,16 +6,20 @@
 //  Copyright © 2016年 Dabay-Tech All rights reserved.
 
 
-//#import "DBNetWorkingManager.h"
-//
-//
-//
-//@implementation DBNetworkReachabilityManager
-//
-//
+#import "DBNetWorkingManager.h"
+
+#import "AFNetworkReachabilityManager.h"
+
+
+
+
+
+@implementation DBNetworkReachabilityManager
+
+
 //
 //#pragma makr - 开始监听程序在运行中的网络连接变化
-//+ (void)startMonitoring
+//- (void)startMonitoring
 //{
 //    // 1.获得网络监控的管理者
 //    DBNetworkReachabilityManager * db_NetworkReachabilityManager = [DBNetWorkingManager sharedManager].db_NetworkReachabilityManager;
@@ -80,14 +84,47 @@
 //    }
 //    
 //}
-//
-//
-//
-//
-//- (void)dealloc
-//{
-//    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
-//}
 
 
-//@end
+#pragma mark - 监控网络状态
+
+
+/** 开始监控 */
+-(void)db_startMonitoring{
+    
+    NSLog(@"");
+
+    AFNetworkReachabilityManager *reachabilityManager =[AFNetworkReachabilityManager sharedManager];
+    [reachabilityManager startMonitoring];
+    
+    
+    //设置网路状态改变的
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        NSLog(@"WANGLUOZHAUNGTAI GAIBIAN");
+        
+        
+        
+        
+        
+        
+        
+        
+    }];
+    
+
+
+}
+
+
+
+
+
+/** 停止网络状态的监控 */
+- (void)dealloc
+{
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+}
+
+
+@end
