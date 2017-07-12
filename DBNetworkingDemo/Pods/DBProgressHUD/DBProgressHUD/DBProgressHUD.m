@@ -7,7 +7,7 @@
 //
 
 #import "DBProgressHUD.h"
-#import "LoadingImageView.h"
+#import "DBLoadingImageView.h"
 
 
 
@@ -48,7 +48,7 @@
         
         // 设置图片
         //添加动态加载logo
-        LoadingImageView * loadImageView = [LoadingImageView loadImageView];
+        DBLoadingImageView * loadImageView = [DBLoadingImageView loadImageView];
         hud.customView = loadImageView;
         
         // 再设置模式

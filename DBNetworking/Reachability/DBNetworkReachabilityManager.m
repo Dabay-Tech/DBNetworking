@@ -127,4 +127,18 @@
 }
 
 
+
+/**
+ 隐藏状态栏
+
+ @return 返回状态栏是否隐藏
+ */
+-(BOOL)prefersStatusBarHidden
+
+{
+    
+    return YES;// 返回YES表示隐藏，返回NO表示显示
+}
+
+
 @end

@@ -6,16 +6,16 @@
 //  Copyright © 2016年 Dabay. All rights reserved.
 //
 
-#import "LoadingImageView.h"
+#import "DBLoadingImageView.h"
 
-@interface LoadingImageView () {
+@interface DBLoadingImageView () {
     dispatch_source_t timer;
 }
 
 
 @end
 
-@implementation LoadingImageView
+@implementation DBLoadingImageView
 
 
 /**
@@ -28,10 +28,10 @@
     static NSBundle *sourceBundle = nil;
     if (sourceBundle == nil) {
         // 这里不使用mainBundle是为了适配pod 1.x和0.x
-        sourceBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[LoadingImageView class]] pathForResource:@"DBProgressHUD" ofType:@"bundle"]];
+        sourceBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[DBLoadingImageView class]] pathForResource:@"DBProgressHUD" ofType:@"bundle"]];
     }
     
-    LoadingImageView *loadingView=[[LoadingImageView alloc]init];
+    DBLoadingImageView *loadingView=[[DBLoadingImageView alloc]init];
     loadingView.image=[[UIImage imageWithContentsOfFile:[sourceBundle pathForResource:@"loading@2x" ofType:@"png"]] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     loadingView.image = [loadingView.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     loadingView->timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());

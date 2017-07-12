@@ -39,15 +39,57 @@ Alternatively you can directly add the `DBNetworking.h` and `DBNetworking.m` sou
 
 ```objective-c
 DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
-manager.db_BaseURLString=@"https://122.226.66.214:7780/ywcitzencard";
-manager.db_certificateString=@"*.dabay.cn";
+manager.db_BaseURLString=@"http://taofei.me";
+manager.db_certificateString=@"donkey.dabay.cn";
 ```
 
+### DBPoster
 
+DBPoster is useful tool for post request, providing three function.
 
+#### HUD tips show out  by default
 
+```objective-c
+/**
+ DBNetworking--发送POST请求--带有默认的HUD提示
+ 
+ @param URLString 网络请求的URL地址字符串
+ @param parameters 网络请求的参数
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_URLString:(NSString *)URLString parameters:(NSDictionary *)parameters succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
+```
 
+#### No HUD tips show out 
 
+```objective-c
+/**
+ DBNetworking--发送POST请求--没有默认的HUD提示
+
+ @param URLString 网络请求的URL地址字符串
+ @param parameters 网络请求的参数
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_withoutHUDWithURLString:(NSString *)URLString parameters:(NSDictionary *)parameters succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
+```
+
+#### HUD tips show out in Specified view
+
+```objective-c
+/**
+ DBNetworking--发送POST请求--指定HUD显示在View上
+
+ @param view HUD显示在View上
+ @param URLString 网络请求的URL地址字符串
+ @param parameters 网络请求的参数
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
+```
+
+#### Using DBPoster
 
 ```objective-c
 [DBPoster db_withHUDInView:self.view URLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {
