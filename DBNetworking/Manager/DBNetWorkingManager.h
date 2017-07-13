@@ -52,7 +52,7 @@
  * @brief DBNetworkingManager的类方法，创建并获取DBNetworkingManager的单例对象
  * @return 返回类型为DBNetWorkingManager的单例对象
  */
-+ (instancetype)sharedManager;
++ (instancetype _Nonnull )sharedManager;
 
 
 

@@ -25,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor=[UIColor lightGrayColor];
     
     //配置在APPdelegate中，在APP代理代理方法didFinishLaunching中设置一次即可
     DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
@@ -35,9 +34,6 @@
     
     
 //    [DBNetworkReachabilityManager db_startMonitoring] ;
-    
-
- 
     
 //    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDict) {
 //        

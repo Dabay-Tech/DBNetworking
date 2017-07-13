@@ -98,13 +98,8 @@
     
     NSLog(@"开始进行网络监听");
     
-    
-
-
-    
     AFNetworkReachabilityManager *reachabilityManager =[AFNetworkReachabilityManager sharedManager];
     [reachabilityManager startMonitoring];
-    
     
     //设置网路状态改变的
     [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
@@ -125,7 +120,6 @@
                 
             case AFNetworkReachabilityStatusReachableViaWWAN:       // 手机自带网络
                 
-                
                 tips = @"2G/3G/4G网络已连接";
                 break;
                 
@@ -139,29 +133,69 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-        
             if (blockView == nil) blockView = [[UIApplication sharedApplication].windows lastObject];
-            
-            UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20)];
-            tipsLabel.backgroundColor = [UIColor redColor];
+    
+            UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)];
+            tipsLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
             tipsLabel.text = tips;
             tipsLabel.textColor = [UIColor whiteColor];
             tipsLabel.textAlignment = NSTextAlignmentCenter;
             tipsLabel.font = [UIFont systemFontOfSize:12];
-            [blockView addSubview:tipsLabel];
-            
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [tipsLabel removeFromSuperview];
-            });
+            [blockView addSubview:tipsLabel];
+            [self showTipsAnimationWith:tipsLabel];
             
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+                [self dismissTipsAnimationWith:tipsLabel];
+            });
         });
-        
     }];
 }
 
 
+
++(void)showTipsAnimationWith:(UIView *)view{
+
+
+    CGRect viewFrame = view.frame;
+    viewFrame.origin.y -= 500;
+    view.frame = viewFrame;
+    viewFrame.origin.y+=500;
+    
+    //beginAnimations表示此后的代码要"参与到"动画中
+    [UIView beginAnimations:nil context:nil];
+    
+    //设置动画时长
+    [UIView setAnimationDuration:1.0];
+    
+    //修改按钮的frame
+    view.frame = viewFrame;
+    
+    //commitAnimations,将beginAnimation之后的所有动画提交并生成动画
+    [UIView commitAnimations];
+}
+
++(void)dismissTipsAnimationWith:(UIView *)view{
+    
+    
+    CGRect viewFrame = view.frame;
+    view.frame = viewFrame;
+    viewFrame.origin.y -= 500;
+    
+    //beginAnimations表示此后的代码要"参与到"动画中
+    [UIView beginAnimations:nil context:nil];
+    
+    //设置动画时长
+    [UIView setAnimationDuration:1.0];
+    
+    //修改按钮的frame
+    view.frame = viewFrame;
+    
+    //commitAnimations,将beginAnimation之后的所有动画提交并生成动画
+    [UIView commitAnimations];
+    
+}
 
 
 
@@ -172,19 +206,6 @@
     NSLog(@"DBNetworkReachabilityManager被销毁-结束网络监听");
 }
 
-
-
-/**
- 隐藏状态栏
-
- @return 返回状态栏是否隐藏
- */
--(BOOL)prefersStatusBarHidden
-
-{
-    
-    return YES;// 返回YES表示隐藏，返回NO表示显示
-}
 
 
 @end
