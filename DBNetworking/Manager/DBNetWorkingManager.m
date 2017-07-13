@@ -41,6 +41,7 @@
 
     
     [self.db_NetworkReachabilityManager startMonitoring];
+    [DBNetworkReachabilityManager db_startMonitoring];
 
 }
 

@@ -31,7 +31,13 @@
     DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
     manager.db_BaseURLString=@"https://122.226.66.214:7780/ywcitzencard";
     manager.db_certificateString=@"";
+    
+    
+    
+//    [DBNetworkReachabilityManager db_startMonitoring] ;
+    
 
+ 
     
 //    [DBHTTPSSessionManager db_postRequestWithURLString:@"index/banner.json?" Parameters:nil isWithHUD:YES succeed:^(NSDictionary * _Nonnull responseDict) {
 //        
@@ -80,11 +86,7 @@
 //        NSLog(@"请求失败");
 //    }];
     
-    
-    
-    
-    _re_manager=[DBNetworkReachabilityManager sharedManager];
-    [_re_manager db_startMonitoring];
+
         
     
 }

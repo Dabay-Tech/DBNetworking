@@ -17,6 +17,9 @@
 @implementation DBNetworkReachabilityManager
 
 
+
+
+
 //
 //#pragma makr - 开始监听程序在运行中的网络连接变化
 //- (void)startMonitoring
@@ -90,10 +93,14 @@
 
 
 /** 开始监控 */
--(void)db_startMonitoring{
++(void)db_startMonitoring{
     
     
     NSLog(@"开始进行网络监听");
+    
+    
+
+
     
     AFNetworkReachabilityManager *reachabilityManager =[AFNetworkReachabilityManager sharedManager];
     [reachabilityManager startMonitoring];
@@ -131,6 +138,8 @@
         __block UIView * blockView = nil;
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+        
             if (blockView == nil) blockView = [[UIApplication sharedApplication].windows lastObject];
             
             UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20)];
