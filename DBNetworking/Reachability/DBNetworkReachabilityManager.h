@@ -26,8 +26,6 @@ typedef enum{
 @property (nonatomic,assign)DBNetworkStatus db_networkStatus;
 
 
-/** 网络状态监听的管理者 */
-+ (DBNetworkReachabilityManager *)sharedReachabilityManager;
 
 /** 开始监听网络状态 */
 +(void)db_startMonitoring;
