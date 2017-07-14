@@ -11,6 +11,12 @@
 #import "AFNetworkReachabilityManager.h"
 
 
+@interface DBNetworkReachabilityManager()
+
+
+
+@end
+
 
 
 
@@ -97,6 +103,8 @@
     
     
     NSLog(@"开始进行网络监听");
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:nil forKey:@"networkStatusMonitoringStarted"];
     
     AFNetworkReachabilityManager *reachabilityManager =[AFNetworkReachabilityManager sharedManager];
     [reachabilityManager startMonitoring];
@@ -104,7 +112,8 @@
     //设置网路状态改变的
     [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
-        
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSString *networkStatus = [ userDefault objectForKey:@"networkStatusMonitoringStarted"];
         NSString * tips = @"";
         switch (status)
         {
@@ -129,6 +138,18 @@
                 break;
         }
         
+        if(networkStatus == nil){//第一次监听到
+        
+            [ userDefault setObject:@"monitoringBegin_1" forKey:@"networkStatusMonitoringStarted"];
+            return ;
+        }
+        
+        if([networkStatus isEqualToString:@"monitoringBegin_1"]){//第二次监听到
+            
+            [ userDefault setObject:@"monitoringBegin_2" forKey:@"networkStatusMonitoringStarted"];
+            return ;
+        }
+        
         __block UIView * blockView = nil;
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -145,9 +166,11 @@
             [blockView addSubview:tipsLabel];
             [self showTipsAnimationWith:tipsLabel];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     
                 [self dismissTipsAnimationWith:tipsLabel];
+                
+                [ userDefault setObject:@"monitoringBegin" forKey:@"networkStatusMonitoringStarted"];
             });
         });
     }];
