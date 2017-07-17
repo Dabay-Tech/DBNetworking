@@ -15,7 +15,7 @@ You will need the latest developer tools in order to build `DBNetworking`. Old X
 
 ## Instructions
 
-## Adding DBProgressHUD to your project
+## Adding DBNetworking to your project
 
 ### CocoaPods
 
