@@ -1,9 +1,13 @@
 
 # DBNetworking
 
-DBNetworking是基于AFNetworking开发的网络请求框架。DBNetworking集成依赖于AFNetworking(3.1.0)、DBProgressHUD，提供HTTPS请求的相关方法，并可以自动监控网络状态的改变并弹出相应的提示。在网络请求时有提供默认的加载中提示。
-
 ## 简介
+
+​	DBNetworking是基于AFNetworking开发的网络请求框架。DBNetworking集成依赖AFNetworking(3.1.0)、DBProgressHUD，提供HTTPS请求的相关方法，并可以自动监控网络状态的改变并弹出相应的提示。在网络请求时有提供默认的加载中提示。
+
+​	DBNetworking中关于GET/POST网络请求的封装主要代码放在DBHTTPSSessionManager中。利用DBHTTPSSessionManager可以实现各种网络请求。但是，目前项目中的请求基本都是POST请求，所以在DBHTTPSSessionManager的基础上提供了`DBPoster`专门用来发送POST请求，DBPoster中目前提供了三种样式的POST请求。
+
+​	关于网络状态改变的提示，目前默认在网络状态发生改变时进行提示。
 
 ## 将DBNetworking加入到项目中
 
@@ -17,7 +21,9 @@ DBNetworking是基于AFNetworking开发的网络请求框架。DBNetworking集�
 
 ### 初始化
 
-在发送网络请求之前要对网络请求的管理者进行初始化操作，如下：
+DBNetworking中的网络请求是HTTPS，需要配置相应的证书。在使用前需要将证书加入项目中。（如果改项目的证书暂时没有，也可以使用。）
+
+在使用DBNetworking发送网络请求之前要对网络请求的管理者进行初始化操作，建议在AppDelegate中进行初始化。例如：
 
 ```objective-c
 DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
@@ -26,6 +32,57 @@ manager.db_certificateString=@"donkey.dabay.cn";
 ```
 
 DBNetWorkingManager使用sharedManager方法创建后作为单例存在，然后设置项目的基地址和HTTPS请求相关的证书名称，并且将证书加入到项目中。
+
+### DBHTTPSSessionManager
+
+关于GET/POST网络请求的封装主要代码放在DBHTTPSSessionManager中;
+
+####  发送POST请求，默认带有加载中提示的HUD
+
+```objective-c
+/**
+ DBNetworking HTTPS请求 默认带有HUD
+
+ @param URLString 网络请求的URL地址字符串
+ @param parameters 网络请求的参数
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_postWithURLString:(NSString *)URLString Parameters:(NSDictionary *)parameters succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
+```
+
+####  发送POST请求，加载中提示的HUD可以进行配置是否显示
+
+```objective-c
+/**
+ DBNetworking HTTPS请求 默认为POST请求
+ 
+ @param URLString 网络请求的URL地址字符串
+ @param parameters 网络请求的参数
+ @param isWithHUD 是否带有HUD提示
+ @param view HUD显示在View上
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_postRequestWithURLString:(NSString*)URLString Parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD inView:(UIView *)view succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
+```
+
+#### 发送POST或者GET请求，加载中提示的HUD可以进行配置是否显示
+
+```objective-c
+/**
+ DBNetworking HTTPS请求 可以选择请求方式：GET,POST
+
+ @param URLString 网络请求的URL地址字符串
+ @param method 网络请求的方式：GET/POST
+ @param parameters 网络请求的参数
+ @param isWithHUD 是否带有HUD提示
+ @param view HUD显示在View上
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_requestWithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD inView:(UIView *)view  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
+```
 
 ### DBPoster
 

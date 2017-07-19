@@ -57,12 +57,12 @@
     
     
     
-//    [DBPoster db_URLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {
-//        NSLog(@"请求成功");
-//        NSLog(@"responseDict--%@",responseDict);
-//    } failure:^(NSError *error) {
-//        NSLog(@"请求失败");
-//    }];
+    [DBPoster db_URLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {
+        NSLog(@"请求成功");
+        NSLog(@"responseDict--%@",responseDict);
+    } failure:^(NSError *error) {
+        NSLog(@"请求失败");
+    }];
     
     
 //    [DBPoster db_withoutHUDWithURLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {
