@@ -102,7 +102,7 @@
 +(void)db_startMonitoring{
     
     
-    NSLog(@"开始进行网络监听");
+    NSLog(@"DBNetWorking--开始进行网络监听");
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     [userDefault setObject:nil forKey:@"networkStatusMonitoringStarted"];
     
