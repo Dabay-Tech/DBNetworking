@@ -31,6 +31,7 @@
     #import "DBURLRequestSerialization.h"
     #import "DBURLResponseSerialization.h"
     #import "DBSecurityPolicy.h"
+    #import "DBPoster.h"
 
 
 #if !TARGET_OS_WATCH
