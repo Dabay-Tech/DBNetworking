@@ -157,7 +157,7 @@
             if (blockView == nil) blockView = [[UIApplication sharedApplication].windows lastObject];
     
             UILabel *tipsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)];
-            tipsLabel.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.645362367021276];
+            tipsLabel.backgroundColor = [UIColor colorWithRed:0.0 green:183/255.0 blue:130/255.0 alpha:1.0];
             tipsLabel.text = tips;
             tipsLabel.textColor = [UIColor whiteColor];
             tipsLabel.textAlignment = NSTextAlignmentCenter;
