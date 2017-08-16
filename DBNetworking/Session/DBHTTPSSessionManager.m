@@ -227,7 +227,7 @@
                 
                 failedBlock(error);
                 NSLog(@"DBNetWorking--请求-GET-请求失败-error=%@",error);
-                [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
+                //[DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
             }];
         }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
             
@@ -257,7 +257,7 @@
                 
                 failedBlock(error);
                 NSLog(@"DBNetWorking--请求-POST-请求失败-error=%@",error);
-                [DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
+                //[DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
             }];
         }
 
