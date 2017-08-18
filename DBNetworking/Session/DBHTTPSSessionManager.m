@@ -135,7 +135,7 @@
 
 
     if(isWithHUD){
-        [DBProgressHUD db_showLoading:@"加载中..." toView:view];
+        [DBProgressHUD db_showLoading:@"   加载中..." toView:view];
     }
     
     
@@ -158,7 +158,7 @@
                 NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
                 
                 if (!cerData) {
-                    NSLog(@"DBNetWorking处理时证书文件未获取到，.cer文件为空");
+                    NSLog(@"DBNetWorking--处理时证书文件未获取到，.cer文件为空");
                     return 0;
                 }
                 
@@ -173,7 +173,7 @@
                 OSStatus status = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)caArray);
                 SecTrustSetAnchorCertificatesOnly(serverTrust, NO);
                 NSCAssert(errSecSuccess == status, @"SectrustSetAnchorCertificates failed");
-                NSLog(@"status=%d",(int)status);
+                NSLog(@"DBNetWorking--status=%d",(int)status);
                 
                 //3.4选择质询认证的处理方式
                 NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
@@ -239,16 +239,20 @@
                 [DBProgressHUD db_hideHUD];
                 
                 if (successBlock){
+                    
+                    NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                    
+                    
                     //1.网络请求成功后错误信息的处理
                     NSData *data = (NSData *)responseObject;
                     NSDictionary* adict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
                     [self db_processingErrorInfoWithDictionary:adict];
                     
                     //2.返回处理得到的字典
-                    NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//                    NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                     successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
                 }else{
-                    NSLog(@"DBNetWorking发送POST请求时失败，链接异常或网络不存在");
+                    NSLog(@"DBNetWorking--发送POST请求时失败，链接异常或网络不存在");
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
@@ -305,7 +309,7 @@
                                                         options:NSJSONReadingMutableContainers
                                                           error:&error];
     if(error) {
-        NSLog(@"JSON解析失败：%@",error);
+        NSLog(@"DBNetWorking--JSON解析失败：%@",error);
         return nil;
     }
     return dic;

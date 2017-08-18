@@ -41,7 +41,7 @@
 
     
     [self.db_NetworkReachabilityManager startMonitoring];
-    //version1.0.8开始使用类方法开启网络状态的监控
+    //Version1.0.8开始使用类方法开启网络状态的监控
     [DBNetworkReachabilityManager db_startMonitoring];
 
 }

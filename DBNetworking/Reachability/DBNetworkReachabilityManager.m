@@ -226,7 +226,7 @@
 - (void)dealloc
 {
     [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
-    NSLog(@"DBNetworkReachabilityManager被销毁-结束网络监听");
+    NSLog(@"DBNetWorking--DBNetworkReachabilityManager被销毁-结束网络监听");
 }
 
 
