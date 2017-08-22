@@ -65,7 +65,7 @@
     
     //如果没有证书
     if(!cerData){
-        NSLog(@"DBNetWorking--HTTPS证书创建失败--没有找到相应的证书文件");
+        //NSLog(@"DBNetWorking--HTTPS证书创建失败--没有找到相应的证书文件");
         return;
     }
     
@@ -158,7 +158,7 @@
                 NSData *cerData = [NSData dataWithContentsOfFile:cerPath];
                 
                 if (!cerData) {
-                    NSLog(@"DBNetWorking--处理时证书文件未获取到，.cer文件为空");
+                    //NSLog(@"DBNetWorking--处理时证书文件未获取到，.cer文件为空");
                     return 0;
                 }
                 
@@ -255,10 +255,6 @@
                         //1.2不做任何拦截，直接在业务处理得地方进行处理
                         successBlock(reponseDict);
                     }
-
-                    
-                    
-                    
                 }else{
                     NSLog(@"DBNetWorking--发送POST请求时失败，链接异常或网络不存在");
                 }
@@ -287,9 +283,6 @@
  */
 +(BOOL)db_processingErrorInfoWithDictionary:(NSDictionary *)errorInfo{
 
-
-    NSLog(@"DBNetWorking--异常处理--登录超时与token失效");
-    NSLog(@"DBNetWorking--%@",errorInfo);
     
     NSString * resultCode = errorInfo[@"resultCode"];
     if([resultCode integerValue] == 4002){
@@ -308,10 +301,7 @@
     
         //DBNetWorking--其他类型的异常不做拦截--不进行拦截
         return NO;
-    
     }
-
-
 }
 
 
