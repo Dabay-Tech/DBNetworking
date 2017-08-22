@@ -244,13 +244,21 @@
                     NSDictionary * reponseDict = [DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr];
                     
                     
-                    //1.网络请求成功后错误信息的处理
-//                    NSData *data = (NSData *)responseObject;
-//                    NSDictionary* adict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                    [self db_processingErrorInfoWithDictionary:reponseDict];
+                    //1.网络请求成功后错误信息的处理,是否做拦截处理
+                    if([self db_processingErrorInfoWithDictionary:reponseDict]){
+                        
+                        //1.1拦截处理，不做成功的回调
+                        //successBlock(nil);
                     
-                    //2.返回处理得到的字典
-                    successBlock(reponseDict);
+                    }else{
+                    
+                        //1.2不做任何拦截，直接在业务处理得地方进行处理
+                        successBlock(reponseDict);
+                    }
+
+                    
+                    
+                    
                 }else{
                     NSLog(@"DBNetWorking--发送POST请求时失败，链接异常或网络不存在");
                 }
@@ -274,9 +282,10 @@
 /**
  处理网络请求成功的的错误请求信息处理
 
- @param errorInfo 网络请求返回的字典
+ @param errorInfo 请求成功返回的信息
+ @return 是否进行拦截
  */
-+(void)db_processingErrorInfoWithDictionary:(NSDictionary *)errorInfo{
++(BOOL)db_processingErrorInfoWithDictionary:(NSDictionary *)errorInfo{
 
 
     NSLog(@"DBNetWorking--异常处理--登录超时与token失效");
@@ -285,15 +294,20 @@
     NSString * resultCode = errorInfo[@"resultCode"];
     if([resultCode integerValue] == 4002){
         
-        NSLog(@"DBNetWorking--发送通知--token失效");
+        //DBNetWorking--发送通知--token失效--进行拦截
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"token_invalid" object:nil userInfo:errorInfo];
+        return YES;
     
     }else if ([resultCode integerValue] == 4003){
     
-        NSLog(@"DBNetWorking--发送通知--token超时");
+        //DBNetWorking--发送通知--token超时--进行拦截
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"token_overtime" object:nil userInfo:errorInfo];
+        return YES;
     
     }else{
     
-        NSLog(@"DBNetWorking--发送通知--其他异常");
+        //DBNetWorking--其他类型的异常不做拦截--不进行拦截
+        return NO;
     
     }
 
