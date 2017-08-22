@@ -241,16 +241,16 @@
                 if (successBlock){
                     
                     NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                    NSDictionary * reponseDict = [DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr];
                     
                     
                     //1.网络请求成功后错误信息的处理
-                    NSData *data = (NSData *)responseObject;
-                    NSDictionary* adict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                    [self db_processingErrorInfoWithDictionary:adict];
+//                    NSData *data = (NSData *)responseObject;
+//                    NSDictionary* adict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                    [self db_processingErrorInfoWithDictionary:reponseDict];
                     
                     //2.返回处理得到的字典
-//                    NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                    successBlock([DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr]);
+                    successBlock(reponseDict);
                 }else{
                     NSLog(@"DBNetWorking--发送POST请求时失败，链接异常或网络不存在");
                 }
@@ -279,10 +279,25 @@
 +(void)db_processingErrorInfoWithDictionary:(NSDictionary *)errorInfo{
 
 
-    NSLog(@"DBNetWorking--网络请求成功");
-    NSLog(@"DBNetWorking--处理网络请求成功得到的数据");
-    //NSLog(@"errorInfo--%@",errorInfo);
-    //NSLog(@"description--%@",errorInfo[@"data"][@"description"]);
+    NSLog(@"DBNetWorking--异常处理--登录超时与token失效");
+    NSLog(@"DBNetWorking--%@",errorInfo);
+    
+    NSString * resultCode = errorInfo[@"resultCode"];
+    if([resultCode integerValue] == 4002){
+        
+        NSLog(@"DBNetWorking--发送通知--token失效");
+    
+    }else if ([resultCode integerValue] == 4003){
+    
+        NSLog(@"DBNetWorking--发送通知--token超时");
+    
+    }else{
+    
+        NSLog(@"DBNetWorking--发送通知--其他异常");
+    
+    }
+
+
 }
 
 
