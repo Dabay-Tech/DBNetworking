@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DBNetworking"
-  s.version      = "1.1.9"
+  s.version      = "1.2.0"
   s.summary      = "Dabay tech : DBNetworking is a high level request util based on AFNetworking."
   s.homepage     = "https://github.com/Dabay-Tech/DBNetworking"
   s.license      = "MIT"
@@ -13,5 +13,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency  "AFNetworking", "~> 3.1.0"
   s.dependency  "DBProgressHUD"
+  s.dependency  "MJExtension"
 
 end

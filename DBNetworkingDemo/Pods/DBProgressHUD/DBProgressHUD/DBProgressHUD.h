@@ -18,12 +18,27 @@
 
 
 /**
+ 显示纯文本形式的提示
+
+ @param tips 提示的内容
+ */
++(void)db_showTips:(NSString *)tips;
+
+
+/**
  显示数据加载中的转圈的效果，并显示相应的提示信息
  
  @param message 加载时的提示信息
  @param view HUD要加载到的View
  */
 + (void)db_showLoading:(NSString *)message toView:(UIView *)view;
+
+/**
+ 显示数据加载中的转圈的效果，并显示相应的提示信息(无需指定view，默认使用当前显示的控制器的view)
+ 
+ @param message 加载时的提示信息
+ */
++ (void)db_showLoading:(NSString *)message;
 
 
 
@@ -52,7 +67,7 @@
  @param message 提示信息
  @param view HUD要加载到的View
  */
-+ (DBProgressHUD *)db_showMessage:(NSString *)message toView:(UIView *)view;
++ (void)db_showMessage:(NSString *)message toView:(UIView *)view;
 
 
 /**
@@ -76,7 +91,7 @@
  
  @param message 提示信息
  */
-+ (DBProgressHUD *)db_showMessage:(NSString *)message;
++ (void)db_showMessage:(NSString *)message;
 
 
 /**

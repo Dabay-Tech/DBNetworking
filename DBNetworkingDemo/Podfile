@@ -4,5 +4,6 @@ target 'DBNetworkingDemo' do
 
 pod 'AFNetworking'
 pod 'DBProgressHUD'
+pod 'MJExtension'
 
 end

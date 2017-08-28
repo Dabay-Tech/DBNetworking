@@ -15,6 +15,7 @@
 #import <Security/Security.h>
 
 #import <DBProgressHUD/DBProgressHUD.h>//大白-HUD
+#import <MJExtension.h>
 #import "AESCipher.h"
 
 #import <netinet/in.h>
@@ -235,20 +236,20 @@
             //0.将参数进行整体加密
         
             //1.将参数字典转化为字符串
-            NSString * paramsString = [DBHTTPSSessionManager db_URLEncryOrDecryString:parameters IsHead:YES];
+            NSString * paramsString = parameters.mj_JSONString;
             
             //2.将字符串用AES进行加密
             NSString *encryptString = aesEncryptString(paramsString, [DBNetWorkingManager sharedManager].db_aesEncryptKey);
             
             //3.重新创建字典,将加密后的内容作为字典中的内容加入字典中
             NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
-            paramDict[@"DBNetWorking--param=%"] = encryptString;
+            paramDict[@"param"] = encryptString;
             
             NSLog(@"加密后的参数：%@",paramDict);
             
             
             
-            [manager POST:URLString parameters:paramDict progress:^(NSProgress * _Nonnull uploadProgress) {
+            [manager POST:URLString parameters:paramDict.mj_JSONString progress:^(NSProgress * _Nonnull uploadProgress) {
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
@@ -385,6 +386,8 @@
     }
     return encryString;
 }
+
+
 
 
 @end
