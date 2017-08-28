@@ -71,6 +71,7 @@ NSData * aesEncryptData(NSData *contentData, NSData *keyData) {
 NSData * aesDecryptData(NSData *contentData, NSData *keyData) {
     NSString *hint = [NSString stringWithFormat:@"The key size of AES-%lu should be %lu bytes!", kKeySize * 8, kKeySize];
     NSCAssert(keyData.length == kKeySize, hint);
+    [hint substringToIndex:0];//没有意义的，只是为了消除提交cocoapods时的警告
     return cipherOperation(contentData, keyData, kCCDecrypt);
 }
 
