@@ -39,6 +39,10 @@
 @property (nonatomic, strong, nullable) NSString * db_certificateString;
 /** 整个项目的网络请求的URL的基地址 */
 @property (nonatomic, strong, nullable) NSString * db_BaseURLString;
+/** 加密的key */
+@property (nonatomic, strong, nullable) NSString * db_aesEncryptKey;
+/** 加密的Iv */
+@property (nonatomic, strong, nullable) NSString * db_aesEncryptInitVector;
 /** 网络是否可用的管理者 */
 @property (nonatomic, strong, nullable) AFNetworkReachabilityManager * db_NetworkReachabilityManager;
 

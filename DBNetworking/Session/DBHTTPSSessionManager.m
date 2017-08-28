@@ -15,6 +15,7 @@
 #import <Security/Security.h>
 
 #import <DBProgressHUD/DBProgressHUD.h>//大白-HUD
+#import "AESCipher.h"
 
 #import <netinet/in.h>
 #import <netinet6/in6.h>
@@ -124,7 +125,7 @@
  
  @param URLString 网络请求的URL地址字符串
  @param method 网络请求的方式：GET/POST
- @param parameters 网络请求的参数
+ @param parameters 网络请求的参数-参数进行整体加密
  @param isWithHUD 是否带有HUD提示
  @param view HUD显示在View上
  @param successBlock 网络请求成功的回调
@@ -231,8 +232,23 @@
             }];
         }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
             
+            //0.将参数进行整体加密
+        
+            //1.将参数字典转化为字符串
+            NSString * paramsString = [DBHTTPSSessionManager db_URLEncryOrDecryString:parameters IsHead:YES];
             
-            [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            //2.将字符串用AES进行加密
+            NSString *encryptString = aesEncryptString(paramsString, [DBNetWorkingManager sharedManager].db_aesEncryptKey);
+            
+            //3.重新创建字典,将加密后的内容作为字典中的内容加入字典中
+            NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
+            paramDict[@"DBNetWorking--param=%"] = encryptString;
+            
+            NSLog(@"加密后的参数：%@",paramDict);
+            
+            
+            
+            [manager POST:URLString parameters:paramDict progress:^(NSProgress * _Nonnull uploadProgress) {
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
@@ -243,6 +259,18 @@
                     NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                     NSDictionary * reponseDict = [DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr];
                     
+                    NSLog(@"DBNetWorking--reponseDict=%@",reponseDict);
+                    
+                    //0.解密前的字符串
+                    NSString * stringBeforeEncry = reponseDict[@"dataBack"];
+                    NSLog(@"DBNetWorking--解密前的字符串=%@",stringBeforeEncry);
+                    //1.解密后的字符串
+                    NSString * stringAfterDecry = aesDecryptString(stringBeforeEncry, [DBNetWorkingManager sharedManager].db_aesEncryptKey);
+                    NSLog(@"DBNetWorking--解密后的字符串=%@",stringAfterDecry);
+                    
+                    //2.解密后的字符串转换为字典
+                    NSDictionary * resultDictionary = [DBHTTPSSessionManager db_dictionaryWithJsonString:stringAfterDecry];
+                    NSLog(@"DBNetWorking--解密后的字符串转换为字典=%@",resultDictionary);
                     
                     //1.网络请求成功后错误信息的处理,是否做拦截处理
                     if([self db_processingErrorInfoWithDictionary:reponseDict]){
@@ -253,7 +281,7 @@
                     }else{
                     
                         //1.2不做任何拦截，直接在业务处理得地方进行处理
-                        successBlock(reponseDict);
+                        successBlock(resultDictionary);
                     }
                 }else{
                     NSLog(@"DBNetWorking--发送POST请求时失败，链接异常或网络不存在");
