@@ -244,12 +244,13 @@
             //3.重新创建字典,将加密后的内容作为字典中的内容加入字典中
             NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
             paramDict[@"param"] = encryptString;
-            NSLog(@"加密前的参数：%@",parameters);
-            NSLog(@"加密后的参数：%@",paramDict);
+            NSLog(@"DBNetWorking--访问的URL地址：%@",URLString);
+            NSLog(@"DBNetWorking--加密前的参数：%@",parameters);
+            //NSLog(@"DBNetWorking--加密后的参数：%@",paramDict);
             
             
             
-            [manager POST:URLString parameters:paramDict.mj_JSONString progress:^(NSProgress * _Nonnull uploadProgress) {
+            [manager POST:URLString parameters:paramDict progress:^(NSProgress * _Nonnull uploadProgress) {
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
@@ -260,14 +261,14 @@
                     NSString *responseStr =  [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                     NSDictionary * reponseDict = [DBHTTPSSessionManager db_dictionaryWithJsonString:responseStr];
                     
-                    NSLog(@"DBNetWorking--reponseDict=%@",reponseDict);
+                    //NSLog(@"DBNetWorking--reponseDict=%@",reponseDict);
                     
                     //0.解密前的字符串
                     NSString * stringBeforeEncry = reponseDict[@"dataBack"];
-                    NSLog(@"DBNetWorking--解密前的字符串=%@",stringBeforeEncry);
+                    // NSLog(@"DBNetWorking--解密前的字符串=%@",stringBeforeEncry);
                     //1.解密后的字符串
                     NSString * stringAfterDecry = aesDecryptString(stringBeforeEncry, [DBNetWorkingManager sharedManager].db_aesEncryptKey);
-                    NSLog(@"DBNetWorking--解密后的字符串=%@",stringAfterDecry);
+                    //NSLog(@"DBNetWorking--解密后的字符串=%@",stringAfterDecry);
                     
                     //2.解密后的字符串转换为字典
                     NSDictionary * resultDictionary = [DBHTTPSSessionManager db_dictionaryWithJsonString:stringAfterDecry];
