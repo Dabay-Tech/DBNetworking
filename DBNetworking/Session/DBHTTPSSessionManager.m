@@ -244,7 +244,7 @@
             //3.重新创建字典,将加密后的内容作为字典中的内容加入字典中
             NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
             paramDict[@"param"] = encryptString;
-            
+            NSLog(@"加密前的参数：%@",parameters);
             NSLog(@"加密后的参数：%@",paramDict);
             
             
