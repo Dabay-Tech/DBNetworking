@@ -315,14 +315,17 @@
     
     NSString * resultCode = errorInfo[@"resultCode"];
     if([resultCode integerValue] == 4002){
+
         
         //DBNetWorking--发送通知--token失效--进行拦截
+        NSLog(@"DBNetWorking--检查到token失效--发送token失效通知...");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"token_invalid" object:nil userInfo:errorInfo];
         return YES;
     
     }else if ([resultCode integerValue] == 4003){
     
         //DBNetWorking--发送通知--token超时--进行拦截
+        NSLog(@"DBNetWorking--检查到token超时--发送token超时通知...");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"token_overtime" object:nil userInfo:errorInfo];
         return YES;
     
