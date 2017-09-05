@@ -1,6 +1,8 @@
 
 # DBNetworking
 
+![Pod version](https://img.shields.io/cocoapods/v/DBNetworking.svg?style=flat)
+
 DBNetworking is a high level request util based on AFNetworking. It's developed by the iOS Team of Dabay-Tech. It provides a High Level API for network request.
 
 ## Requirements
