@@ -123,6 +123,7 @@
 
 /**
  DBNetworking HTTPS请求 可以选择请求方式：GET,POST
+ 默认对POST请求进行AES加密
  
  @param URLString 网络请求的URL地址字符串
  @param method 网络请求的方式：GET/POST
@@ -135,7 +136,25 @@
 +(void)db_requestWithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD inView:(UIView *)view  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
     
 
+    [self db_aesRequest:YES WithURLString:URLString httpsMethod:method parameters:parameters isWithHUD:isWithHUD inView:view succeed:successBlock failure:failedBlock];
+}
 
+
+/**
+ 选择是否进行AES对参数整体进行加密的HTTPS请求 可以选择请求方式：GET,POST
+ 
+ @param isAESRequest 是否进行AES加密
+ @param URLString 网络请求的URL地址字符串
+ @param method 网络请求的方式：GET/POST
+ @param parameters 网络请求的参数
+ @param isWithHUD 是否带有HUD提示
+ @param view HUD显示在View上
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_aesRequest:(BOOL) isAESRequest WithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD inView:(UIView *)view  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock{
+    
+    
     if(isWithHUD){
         [DBProgressHUD db_showLoading:@"   加载中..." toView:view];
     }
@@ -225,7 +244,7 @@
                 
                 //无论是成功还是失败-都结束加载中的提示
                 [DBProgressHUD db_hideHUD];
-
+                
                 
                 failedBlock(error);
                 NSLog(@"DBNetWorking--请求-GET-请求失败-error=%@",error);
@@ -233,8 +252,10 @@
             }];
         }else if (method == DB_HTTPSMETHOD_POST){//发送POST请求
             
-            //0.将参数进行整体加密
         
+            
+            //0.将参数进行整体加密
+            
             //1.将参数字典转化为字符串
             NSString * paramsString = parameters.mj_JSONString;
             
@@ -248,9 +269,20 @@
             NSLog(@"DBNetWorking--加密前的参数：%@",parameters);
             //NSLog(@"DBNetWorking--加密后的参数：%@",paramDict);
             
+            NSMutableDictionary * params = [NSMutableDictionary dictionary];
+            if(isAESRequest){
+                
+                //加密后的参数
+                params = paramDict;
+            }else{
+            
+                //加密后的参数
+                params = [NSMutableDictionary dictionaryWithDictionary:parameters];
+            }
             
             
-            [manager POST:URLString parameters:paramDict progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+            [manager POST:URLString parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 
                 //无论是成功还是失败-都结束加载中的提示
@@ -279,9 +311,9 @@
                         
                         //1.1拦截处理，不做成功的回调
                         //successBlock(nil);
-                    
+                        
                     }else{
-                    
+                        
                         //1.2不做任何拦截，直接在业务处理得地方进行处理
                         successBlock(resultDictionary);
                     }
@@ -298,10 +330,13 @@
                 //[DBProgressHUD db_showError:@"服务暂不可用，请稍后重试"];
             }];
         }
-
+        
     });
-    
 }
+
+
+
+
 
 #pragma mark - 网络请求错误的处理
 

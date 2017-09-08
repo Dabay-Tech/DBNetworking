@@ -53,6 +53,7 @@ typedef void (^FailedBlock)(NSError *error);
 
 /**
  DBNetworking--发送POST请求--指定HUD显示在View上
+ 默认对参数整体进行AES加密
 
  @param view HUD显示在View上
  @param URLString 网络请求的URL地址字符串

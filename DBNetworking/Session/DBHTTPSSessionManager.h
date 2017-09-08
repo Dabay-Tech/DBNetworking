@@ -103,6 +103,22 @@ typedef void (^FailedBlock)(NSError *error);
 
 
 
+/**
+ 选择是否进行AES对参数整体进行加密的HTTPS请求 可以选择请求方式：GET,POST
+
+ @param isAESRequest 是否进行AES加密
+ @param URLString 网络请求的URL地址字符串
+ @param method 网络请求的方式：GET/POST
+ @param parameters 网络请求的参数
+ @param isWithHUD 是否带有HUD提示
+ @param view HUD显示在View上
+ @param successBlock 网络请求成功的回调
+ @param failedBlock 网络请求失败的回调
+ */
++(void)db_aesRequest:(BOOL) isAESRequest WithURLString:(NSString *)URLString httpsMethod:(DB_HTTPSMETHOD)method  parameters:(NSDictionary *)parameters isWithHUD:(BOOL)isWithHUD inView:(UIView *)view  succeed:(SuccessBlock)successBlock failure:(FailedBlock)failedBlock;
+
+
+
 #pragma mark - 字符串与JSON的转换
 
 /**
