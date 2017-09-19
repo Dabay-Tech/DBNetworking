@@ -28,7 +28,7 @@
     
     //配置在APPdelegate中，在APP代理代理方法didFinishLaunching中设置一次即可
     DBNetWorkingManager *manager=[DBNetWorkingManager sharedManager];
-    manager.db_BaseURLString=@"https://122.226.66.214:7780/ywcitzencard";
+    manager.db_BaseURLString=@"";
     manager.db_certificateString=@"";
     
     
@@ -57,12 +57,12 @@
     
     
     
-    [DBPoster db_URLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {
-        NSLog(@"请求成功");
-        NSLog(@"responseDict--%@",responseDict);
-    } failure:^(NSError *error) {
-        NSLog(@"请求失败");
-    }];
+//    [DBPoster db_URLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {
+//        NSLog(@"请求成功");
+//        NSLog(@"responseDict--%@",responseDict);
+//    } failure:^(NSError *error) {
+//        NSLog(@"请求失败");
+//    }];
     
     
 //    [DBPoster db_withoutHUDWithURLString:@"index/banner.json?" parameters:nil succeed:^(NSDictionary *responseDict) {

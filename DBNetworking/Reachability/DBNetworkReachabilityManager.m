@@ -166,11 +166,23 @@
             [blockView addSubview:tipsLabel];
             [self showTipsAnimationWith:tipsLabel];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if(status == AFNetworkReachabilityStatusUnknown || status == AFNetworkReachabilityStatusNotReachable){
+            
+                //实时监听网络；网络不可用时，发送通知
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"network_not_reachable" object:nil userInfo:nil];
+                NSLog(@"网络不可用--");
+            }else{
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"network_reachable" object:nil userInfo:nil];
+                NSLog(@"网络可用--");
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
     
                 [self dismissTipsAnimationWith:tipsLabel];
                 
-                [ userDefault setObject:@"monitoringBegin" forKey:@"networkStatusMonitoringStarted"];
+                [userDefault setObject:@"monitoringBegin" forKey:@"networkStatusMonitoringStarted"];
             });
         });
     }];
