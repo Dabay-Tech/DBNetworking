@@ -176,5 +176,14 @@
 + (void)db_showMultiLineMessage:(NSString *)message;
 
 
+/**
+ 计算HUD显示的时间
+ 
+ @param tipsString tips中的内容
+ @return HUD显示的时间
+ */
++(CGFloat)calculateShowingTimeWithString:(NSString *)tipsString;
+
+
 
 @end
