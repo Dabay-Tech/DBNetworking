@@ -307,7 +307,7 @@
                     NSLog(@"DBNetWorking--解密后的字符串转换为字典=%@",resultDictionary);
                     
                     //1.网络请求成功后错误信息的处理,是否做拦截处理
-                    if([self db_processingErrorInfoWithDictionary:reponseDict]){
+                    if([self db_processingErrorInfoWithDictionary:resultDictionary]){
                         
                         //1.1拦截处理，不做成功的回调
                         //successBlock(nil);
